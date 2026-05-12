@@ -1123,6 +1123,30 @@
           });
         }
 
+        // Populate category dropdown from event_types table
+        (async function() {
+          var catSelect = document.getElementById('category-select');
+          try {
+            var res = await fetch(API_BASE_URL + '/api/event-types/public', {
+              headers: { 'x-form-token': FORM_TOKEN },
+            });
+            if (res.ok) {
+              var types = await res.json();
+              catSelect.innerHTML = '<option value="">Select a category...</option>';
+              types.forEach(function(t) {
+                var opt = document.createElement('option');
+                opt.value = t.name;
+                opt.textContent = t.name;
+                catSelect.appendChild(opt);
+              });
+            } else {
+              catSelect.innerHTML = '<option value="">Could not load categories</option>';
+            }
+          } catch (e) {
+            catSelect.innerHTML = '<option value="">Could not load categories</option>';
+          }
+        })();
+
         // Recurring dates reveal
         document.querySelector('[name="recurring"]').addEventListener('change', function() {
           document.getElementById('recurring-dates-section').style.display =
@@ -1316,13 +1340,8 @@
             <div class="grid-2">
               <div class="field-group">
                 <label class="field-label">Category <span class="req">*</span></label>
-                <select name="category" class="field-input">
-                  <option value="">Select a category...</option>
-                  <option value="Rams">Rams</option>
-                  <option value="Chargers">Chargers</option>
-                  <option value="Concert">Concert</option>
-                  <option value="Corporate">Corporate</option>
-                  <option value="Other">Other</option>
+                <select id="category-select" name="category" class="field-input">
+                  <option value="">Loading categories...</option>
                 </select>
               </div>
               <div class="field-group">
