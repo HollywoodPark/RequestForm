@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quote Review | SoFi Stadium Production Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* ── Custom Fonts ──────────────────────────────────────────────────────── */
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap');
+
+      @font-face {
+        font-family: 'Monday Pro';
+        src: url('../Fonts/Monday Pro.otf') format('opentype');
+      }
+      @font-face {
+        font-family: 'DINPro Medium';
+        src: url('../Fonts/DINPro Medium.otf') format('opentype');
+      }
+
+      /* ── Design Tokens ─────────────────────────────────────────────────────── */
+      :root {
+        --sofi-blue:     #003594;
+        --sofi-navy:     #0A2957;
+        --rams-gold:     #FFAD00;
+        --glass-bg:      rgba(255, 255, 255, 0.05);
+        --glass-blur:    15px;
+        --glass-border:  rgba(255, 255, 255, 0.10);
+        --text-primary:  rgba(255, 255, 255, 0.95);
+        --text-muted:    rgba(255, 255, 255, 0.55);
+        --text-subtle:   rgba(255, 255, 255, 0.35);
+        --input-bg:      rgba(255, 255, 255, 0.07);
+        --input-border:  rgba(255, 255, 255, 0.15);
+        --input-focus:   #FFAD00;
+        --card-bg:       rgba(255, 255, 255, 0.04);
+        --card-border:   rgba(255, 255, 255, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        font-family: 'Inter', 'DINPro Medium', sans-serif;
+        background: linear-gradient(135deg, #060d1f 0%, #0A2957 50%, #060d1f 100%);
+        overflow-x: hidden;
+      }
+
+      /* ── Animated Scene Background ───────────────────────────────────────── */
+      .scene-bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .scene-video {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        opacity: 0.40;
+      }
+      .scene-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 53, 148, 0.75) 0%,
+          rgba(10, 25, 87, 0.72) 50%,
+          rgba(6, 13, 31, 0.85) 100%
+        );
+      }
+
+      /* ── Page Layout ─────────────────────────────────────────────────────── */
+      .page-wrap {
+        position: relative;
+        z-index: 10;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2.5rem 1rem 4rem;
+      }
+
+      /* ── Main Card ───────────────────────────────────────────────────────── */
+      .portal-card {
+        width: 80%;
+        max-width: 720px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        box-shadow:
+          0 24px 80px rgba(0, 0, 0, 0.55),
+          0 4px 20px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+      }
+
+      /* ── Portal Header ───────────────────────────────────────────────────── */
+      .portal-header {
+        background: linear-gradient(135deg, rgba(10, 41, 87, 0.92) 0%, rgba(0, 53, 148, 0.88) 100%);
+        padding: 2rem 2.5rem 1.75rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .portal-header::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 70% -30%, rgba(255,173,0,0.18) 0%, transparent 60%);
+        pointer-events: none;
+      }
+      .portal-logo {
+        height: 56px;
+        max-width: 200px;
+        object-fit: contain;
+        margin-bottom: 0.75rem;
+        filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5)) brightness(1.1);
+      }
+      .portal-title {
+        font-family: 'Monday Pro', 'Montserrat', sans-serif;
+        font-size: 1.375rem;
+        font-weight: 900;
+        color: #fff;
+        letter-spacing: -0.5px;
+        margin: 0 0 0.25rem;
+        text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      }
+      .portal-subtitle {
+        font-size: 0.8125rem;
+        color: rgba(255,255,255,0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin: 0;
+      }
+      .portal-gold-bar {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, transparent 0%, var(--rams-gold) 40%, var(--rams-gold) 60%, transparent 100%);
+      }
+
+      /* ── Body Content ────────────────────────────────────────────────────── */
+      .portal-body { padding: 2rem 2.5rem 2.5rem; }
+
+      /* ── Section Labels ──────────────────────────────────────────────────── */
+      .section-eyebrow {
+        font-family: 'Monday Pro', sans-serif;
+        font-size: 0.625rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--rams-gold);
+        margin-bottom: 0.25rem;
+      }
+      .section-title {
+        font-family: 'Monday Pro', 'Montserrat', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: rgba(255,255,255,0.95);
+        margin: 0 0 0.25rem;
+        letter-spacing: -0.3px;
+      }
+      .section-desc {
+        font-size: 0.875rem;
+        color: rgba(255,255,255,0.50);
+        margin: 0 0 1.75rem;
+      }
+
+      /* ── Quote Summary Card ──────────────────────────────────────────────── */
+      .quote-summary-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 1.375rem 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .summary-item {}
+      .summary-label {
+        font-family: 'Monday Pro', sans-serif;
+        font-size: 0.5625rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        color: rgba(255,255,255,0.40);
+        margin-bottom: 0.25rem;
+      }
+      .summary-value {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.90);
+        font-family: 'Inter', sans-serif;
+      }
+      .summary-value.total {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--rams-gold);
+        font-family: 'Monday Pro', sans-serif;
+      }
+      .summary-value.code {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.875rem;
+        color: rgba(255,255,255,0.70);
+        letter-spacing: 0.05em;
+      }
+      .summary-divider {
+        border: none;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        margin: 1rem 0;
+      }
+
+      /* ── Download Button ─────────────────────────────────────────────────── */
+      .btn-download {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        background: rgba(255,255,255,0.07);
+        border: 1.5px solid rgba(255,255,255,0.18);
+        border-radius: 10px;
+        color: rgba(255,255,255,0.80);
+        font-family: 'Monday Pro', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s;
+        margin-bottom: 1.75rem;
+      }
+      .btn-download:hover {
+        background: rgba(255,255,255,0.13);
+        border-color: rgba(255,255,255,0.32);
+        color: #fff;
+      }
+      .btn-download svg { flex-shrink: 0; }
+
+      /* ── Decision Prompt ─────────────────────────────────────────────────── */
+      .decision-prompt {
+        font-size: 0.9375rem;
+        color: rgba(255,255,255,0.65);
+        margin-bottom: 1.375rem;
+        line-height: 1.6;
+      }
+
+      /* ── Action Buttons ──────────────────────────────────────────────────── */
+      .action-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.875rem;
+      }
+
+      .btn-approve {
+        padding: 1rem;
+        background: linear-gradient(135deg, #065f46 0%, #059669 100%);
+        color: #fff;
+        font-family: 'Monday Pro', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,0.15);
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 4px 20px rgba(5,150,105,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
+        text-align: center;
+      }
+      .btn-approve:hover {
+        background: linear-gradient(135deg, #047857 0%, #06b77a 100%);
+        box-shadow: 0 8px 28px rgba(5,150,105,0.50);
+        transform: translateY(-1px);
+      }
+      .btn-approve:active  { transform: translateY(0); }
+      .btn-approve:disabled {
+        background: rgba(255,255,255,0.10);
+        box-shadow: none;
+        cursor: not-allowed;
+        transform: none;
+        color: rgba(255,255,255,0.35);
+      }
+
+      .btn-changes {
+        padding: 1rem;
+        background: rgba(255,255,255,0.06);
+        color: rgba(255,255,255,0.80);
+        font-family: 'Monday Pro', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        border-radius: 14px;
+        border: 1.5px solid rgba(255,255,255,0.18);
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: center;
+      }
+      .btn-changes:hover {
+        background: rgba(255,255,255,0.12);
+        border-color: rgba(255,255,255,0.32);
+        color: #fff;
+      }
+      .btn-changes:active { transform: translateY(0); }
+
+      .btn-primary {
+        padding: 0.875rem 2rem;
+        background: linear-gradient(135deg, var(--sofi-blue) 0%, #0052CC 100%);
+        color: #fff;
+        font-family: 'Monday Pro', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 700;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.15);
+        cursor: pointer;
+        transition: all 0.2s;
+        letter-spacing: 0.02em;
+        box-shadow: 0 4px 20px rgba(0,53,148,0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+        width: 100%;
+      }
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #002a78 0%, #003594 100%);
+        box-shadow: 0 8px 28px rgba(0,53,148,0.55);
+        transform: translateY(-1px);
+      }
+      .btn-primary:disabled {
+        background: rgba(255,255,255,0.12);
+        box-shadow: none;
+        cursor: not-allowed;
+        transform: none;
+        color: rgba(255,255,255,0.35);
+        border-color: rgba(255,255,255,0.08);
+      }
+
+      .btn-ghost {
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        color: rgba(255,255,255,0.55);
+        font-family: 'Monday Pro', sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.12);
+        cursor: pointer;
+        transition: all 0.2s;
+        letter-spacing: 0.02em;
+      }
+      .btn-ghost:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.28); background: rgba(255,255,255,0.05); }
+
+      /* ── Feedback Textarea ───────────────────────────────────────────────── */
+      .feedback-label {
+        display: block;
+        font-family: 'Monday Pro', sans-serif;
+        font-size: 0.625rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        color: rgba(255,255,255,0.65);
+        margin-bottom: 0.5rem;
+      }
+      .feedback-textarea {
+        width: 100%;
+        min-height: 120px;
+        padding: 0.875rem 1rem;
+        background: var(--input-bg);
+        border: 1.5px solid var(--input-border);
+        border-radius: 12px;
+        color: rgba(255,255,255,0.90);
+        font-family: 'Inter', 'DINPro Medium', sans-serif;
+        font-size: 0.9375rem;
+        resize: vertical;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        margin-bottom: 1rem;
+      }
+      .feedback-textarea:focus {
+        border-color: var(--rams-gold);
+        box-shadow: 0 0 0 3px rgba(255,173,0,0.15);
+        background: rgba(255,255,255,0.10);
+      }
+      .feedback-textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+      .feedback-btn-row {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+      }
+      .feedback-btn-row .btn-primary { width: auto; flex: 1; }
+
+      /* ── Info Banner ─────────────────────────────────────────────────────── */
+      .info-banner {
+        background: rgba(0, 83, 200, 0.12);
+        border: 1px solid rgba(0, 83, 200, 0.30);
+        border-radius: 10px;
+        padding: 0.875rem 1rem;
+        font-size: 0.8125rem;
+        color: rgba(255,255,255,0.70);
+        margin-bottom: 1.5rem;
+        line-height: 1.55;
+      }
+
+      /* ── Error Banner ────────────────────────────────────────────────────── */
+      .error-banner {
+        margin-bottom: 1rem;
+        padding: 0.875rem 1rem;
+        border-radius: 10px;
+        background: rgba(190, 18, 60, 0.15);
+        border: 1px solid rgba(254, 205, 211, 0.25);
+        color: #FF8FAB;
+        font-size: 0.875rem;
+        display: none;
+      }
+
+      /* ── Spinner ─────────────────────────────────────────────────────────── */
+      .spinner-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 2rem;
+        gap: 1rem;
+      }
+      .spinner {
+        width: 44px; height: 44px;
+        border: 3px solid rgba(255,255,255,0.12);
+        border-top-color: var(--rams-gold);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .spinner-label {
+        font-family: 'Monday Pro', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: rgba(255,255,255,0.40);
+      }
+
+      /* ── Success / Done State ────────────────────────────────────────────── */
+      #statusMsg {
+        position: relative;
+        z-index: 10;
+        width: 80%;
+        max-width: 720px;
+        margin-top: 0;
+      }
+      .success-glass-card {
+        background: rgba(255,255,255,0.06);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 24px;
+        padding: 3.5rem 2.5rem;
+        text-align: center;
+        box-shadow: 0 24px 80px rgba(0,0,0,0.50), 0 4px 20px rgba(0,0,0,0.30);
+      }
+      .check-wrap { width: 80px; height: 80px; margin: 0 auto 1.5rem; }
+      .check-circle {
+        stroke: var(--rams-gold); stroke-width: 2; fill: none;
+        stroke-dasharray: 166; stroke-dashoffset: 166;
+        animation: check-circle-anim 0.8s cubic-bezier(0.65,0,0.45,1) 0.15s forwards;
+      }
+      .check-mark {
+        stroke: var(--rams-gold); stroke-width: 3;
+        stroke-linecap: round; stroke-linejoin: round; fill: none;
+        stroke-dasharray: 48; stroke-dashoffset: 48;
+        animation: check-mark-anim 0.4s cubic-bezier(0.65,0,0.45,1) 0.8s forwards;
+      }
+      @keyframes check-circle-anim { to { stroke-dashoffset: 0; } }
+      @keyframes check-mark-anim   { to { stroke-dashoffset: 0; } }
+
+      .changes-icon-wrap {
+        width: 80px; height: 80px;
+        border-radius: 50%;
+        background: rgba(255,173,0,0.12);
+        border: 2px solid rgba(255,173,0,0.35);
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 1.5rem;
+      }
+      .success-title {
+        font-family: 'Monday Pro', 'Montserrat', sans-serif;
+        font-size: 1.75rem; font-weight: 900;
+        color: rgba(255,255,255,0.95);
+        margin-bottom: 0.75rem; letter-spacing: -0.5px;
+      }
+      .success-body {
+        font-size: 1rem; color: rgba(255,255,255,0.60);
+        max-width: 420px; margin: 0 auto 2rem; line-height: 1.6;
+      }
+      .success-badge {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: rgba(255,173,0,0.12);
+        border: 1px solid rgba(255,173,0,0.30);
+        border-radius: 10px;
+        padding: 0.5rem 1rem; margin-bottom: 2rem;
+        font-family: 'Monday Pro', sans-serif;
+        font-size: 0.8125rem; font-weight: 700;
+        color: var(--rams-gold); text-transform: uppercase; letter-spacing: 0.06em;
+      }
+      .error-glass-card {
+        background: rgba(190,18,60,0.12);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-radius: 16px; padding: 2rem 2.5rem;
+        border: 1px solid rgba(254,100,130,0.25);
+        color: #FF8FAB; text-align: center;
+      }
+
+      /* ── Status Badge (already responded) ───────────────────────────────── */
+      .status-pill {
+        display: inline-flex; align-items: center; gap: 0.375rem;
+        padding: 0.3125rem 0.75rem;
+        border-radius: 20px;
+        font-family: 'Monday Pro', sans-serif;
+        font-size: 0.625rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.07em;
+        margin-bottom: 1.25rem;
+      }
+      .status-pill.accepted { background: rgba(5,150,105,0.15); color: #34d399; border: 1px solid rgba(52,211,153,0.30); }
+      .status-pill.pending  { background: rgba(255,173,0,0.12);  color: var(--rams-gold); border: 1px solid rgba(255,173,0,0.30); }
+
+      /* ── Responsive ──────────────────────────────────────────────────────── */
+      @media (max-width: 640px) {
+        .portal-card { width: 96%; }
+        .portal-body, .portal-header { padding-left: 1.25rem; padding-right: 1.25rem; }
+        .summary-grid { grid-template-columns: 1fr; }
+        .action-row   { grid-template-columns: 1fr; }
+      }
+
+      /* ── Reduced motion ──────────────────────────────────────────────────── */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      }
+    </style>
+
+    <script>
+      // ── Config ────────────────────────────────────────────────────────────────
+      const API_BASE_URL =
+        window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+          ? 'http://localhost:3000'
+          : 'https://venuecore-app-745522474629.us-central1.run.app';
+
+      // ── State ─────────────────────────────────────────────────────────────────
+      let quoteId   = null;
+      let quoteData = null;
+
+      // ── Helpers ───────────────────────────────────────────────────────────────
+      function fmtDate(d) {
+        if (!d) return '—';
+        return new Date(d).toLocaleDateString('en-US', {
+          month: 'short', day: 'numeric', year: 'numeric',
+          timeZone: 'America/Los_Angeles',
+        });
+      }
+
+      function fmtCurrency(v) {
+        var n = Number(v || 0);
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function showPanel(id) {
+        ['panel-loading', 'panel-review', 'panel-feedback'].forEach(function(p) {
+          var el = document.getElementById(p);
+          if (el) el.style.display = 'none';
+        });
+        var target = document.getElementById(id);
+        if (target) target.style.display = 'block';
+      }
+
+      function showInlineError(msg) {
+        var el = document.getElementById('inline-error');
+        if (!el) return;
+        el.textContent = msg;
+        el.style.display = 'block';
+        setTimeout(function() { el.style.display = 'none'; }, 7000);
+      }
+
+      function showFullSuccess(type) {
+        document.getElementById('portal-card').style.display   = 'none';
+        document.getElementById('statusMsg').style.display = 'block';
+
+        if (type === 'approved') {
+          document.getElementById('statusMsg').innerHTML = `
+            <div class="success-glass-card">
+              <div class="check-wrap">
+                <svg viewBox="0 0 52 52" style="width:80px;height:80px;">
+                  <circle class="check-circle" cx="26" cy="26" r="25"/>
+                  <path class="check-mark" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+              </div>
+              <h2 class="success-title">Thank You!</h2>
+              <p class="success-body">
+                Your event is now confirmed. Our team will reach out shortly regarding final details, asset submissions, and media uploads.
+              </p>
+              <div class="success-badge">
+                <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/>
+                </svg>
+                Quote Accepted · ${quoteData ? quoteData.quoteCode : ''}
+              </div>
+            </div>`;
+        } else {
+          document.getElementById('statusMsg').innerHTML = `
+            <div class="success-glass-card">
+              <div class="changes-icon-wrap">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#FFAD00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                </svg>
+              </div>
+              <h2 class="success-title">Feedback Sent</h2>
+              <p class="success-body">
+                Thank you for your notes. Our team will review your feedback and follow up with a revised quote within 1–2 business days.
+              </p>
+              <div class="success-badge">
+                <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd"/>
+                </svg>
+                Changes Requested · ${quoteData ? quoteData.quoteCode : ''}
+              </div>
+            </div>`;
+        }
+      }
+
+      function showErrorPage(msg) {
+        document.getElementById('portal-card').style.display   = 'none';
+        document.getElementById('statusMsg').style.display = 'block';
+        document.getElementById('statusMsg').innerHTML = `
+          <div class="error-glass-card">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#FF8FAB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 1rem;display:block;">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <p style="font-weight:700;font-size:1.125rem;margin-bottom:0.5rem;">Unable to load quote</p>
+            <p style="font-size:0.9rem;color:rgba(255,255,255,0.50);">${msg || 'This link may be invalid or expired. Please contact your account manager.'}</p>
+          </div>`;
+      }
+
+      // ── Render review panel ───────────────────────────────────────────────────
+      function renderReview(q) {
+        quoteData = q;
+
+        var statusHtml = '';
+        if (q.status === 'Pending Client Confirmation') {
+          statusHtml = '<div class="status-pill pending">● Awaiting Your Response</div>';
+        }
+
+        document.getElementById('review-status').innerHTML   = statusHtml;
+        document.getElementById('review-event').textContent  = q.eventName   || '—';
+        document.getElementById('review-ref').textContent    = q.quoteCode   || '—';
+        document.getElementById('review-total').textContent  = fmtCurrency(q.finalTotal);
+        document.getElementById('review-dates').textContent  = fmtDate(q.startDate) + ' – ' + fmtDate(q.endDate);
+        document.getElementById('review-cat').textContent    = q.category    || '—';
+        document.getElementById('download-btn').href         = API_BASE_URL + '/api/quotes/' + q.id + '/download';
+
+        showPanel('panel-review');
+      }
+
+      // ── Actions ───────────────────────────────────────────────────────────────
+      function showFeedbackPanel() {
+        document.getElementById('inline-error').style.display = 'none';
+        showPanel('panel-feedback');
+      }
+
+      function backToReview() {
+        document.getElementById('feedback-text').value = '';
+        document.getElementById('feedback-error').style.display = 'none';
+        showPanel('panel-review');
+      }
+
+      async function submitApproval() {
+        var btn = document.getElementById('btn-approve');
+        btn.disabled = true;
+        btn.textContent = 'Processing…';
+
+        try {
+          var res = await fetch(API_BASE_URL + '/api/quotes/' + quoteId + '/respond', {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'Accepted' }),
+          });
+          if (!res.ok) {
+            var err = await res.json();
+            throw new Error((err.message && (Array.isArray(err.message) ? err.message.join(', ') : err.message)) || 'Approval failed. Please try again.');
+          }
+          showFullSuccess('approved');
+        } catch (e) {
+          showInlineError(e.message || 'An unexpected error occurred. Please try again.');
+          btn.disabled = false;
+          btn.textContent = 'Approve Quote';
+        }
+      }
+
+      async function submitFeedback() {
+        var feedback = document.getElementById('feedback-text').value.trim();
+        if (!feedback) {
+          document.getElementById('feedback-error').textContent = 'Please describe what needs to be adjusted.';
+          document.getElementById('feedback-error').style.display = 'block';
+          return;
+        }
+        document.getElementById('feedback-error').style.display = 'none';
+
+        var btn = document.getElementById('btn-send-feedback');
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+
+        try {
+          var res = await fetch(API_BASE_URL + '/api/quotes/' + quoteId + '/respond', {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'Rejected', feedback: feedback }),
+          });
+          if (!res.ok) {
+            var err = await res.json();
+            throw new Error((err.message && (Array.isArray(err.message) ? err.message.join(', ') : err.message)) || 'Submission failed. Please try again.');
+          }
+          showFullSuccess('changes');
+        } catch (e) {
+          document.getElementById('feedback-error').textContent = e.message || 'An unexpected error occurred.';
+          document.getElementById('feedback-error').style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Send Feedback';
+        }
+      }
+
+      // ── Init ──────────────────────────────────────────────────────────────────
+      window.onload = async function() {
+        var params = new URLSearchParams(window.location.search);
+        quoteId = params.get('id');
+
+        if (!quoteId) {
+          showErrorPage('No quote ID was found in the URL. Please use the link from your email.');
+          return;
+        }
+
+        try {
+          var res = await fetch(API_BASE_URL + '/api/quotes/' + quoteId + '/public');
+          if (!res.ok) {
+            var body = await res.json().catch(function() { return {}; });
+            throw new Error(body.message || 'Quote not found. It may have been archived or the link is expired.');
+          }
+
+          var q = await res.json();
+
+          // Already responded
+          if (q.status === 'Accepted') {
+            document.getElementById('portal-card').style.display = 'none';
+            document.getElementById('statusMsg').style.display = 'block';
+            document.getElementById('statusMsg').innerHTML = `
+              <div class="success-glass-card">
+                <div class="check-wrap">
+                  <svg viewBox="0 0 52 52" style="width:80px;height:80px;">
+                    <circle class="check-circle" cx="26" cy="26" r="25"/>
+                    <path class="check-mark" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                  </svg>
+                </div>
+                <h2 class="success-title">Quote Already Accepted</h2>
+                <p class="success-body">This quote has already been approved. Your event is confirmed — our team will be in touch.</p>
+                <div class="success-badge">● ${q.quoteCode} · Accepted</div>
+              </div>`;
+            return;
+          }
+
+          renderReview(q);
+
+        } catch (e) {
+          showErrorPage(e.message);
+        }
+      };
+    </script>
+  </head>
+
+  <body>
+    <!-- ── Scene Background ─────────────────────────────────────────────────── -->
+    <div class="scene-bg">
+      <video class="scene-video" autoplay muted loop playsinline
+             poster="../Assets/BOPS_Bg1.png">
+        <source src="../Assets/BOPS_Logo_Moving.mov" type="video/quicktime" />
+        <source src="../Assets/BOPS_Logo_Moving.mov" type="video/mp4" />
+      </video>
+      <div class="scene-overlay"></div>
+    </div>
+
+    <!-- ── Page Wrap ───────────────────────────────────────────────────────── -->
+    <div class="page-wrap">
+
+      <!-- ── Main Portal Card ──────────────────────────────────────────────── -->
+      <div class="portal-card" id="portal-card">
+
+        <!-- Header -->
+        <div class="portal-header">
+          <img src="../Assets/BOPS_Logo_Main.png" alt="BOPS Logo" class="portal-logo"
+               onerror="this.style.display='none'" />
+          <h1 class="portal-title">Quote Review Portal</h1>
+          <p class="portal-subtitle">Production Services · Hollywood Park</p>
+          <div class="portal-gold-bar"></div>
+        </div>
+
+        <!-- Loading Panel -->
+        <div id="panel-loading">
+          <div class="spinner-wrap">
+            <div class="spinner"></div>
+            <span class="spinner-label">Loading your quote…</span>
+          </div>
+        </div>
+
+        <!-- Review Panel -->
+        <div id="panel-review" style="display:none;">
+          <div class="portal-body">
+
+            <div id="review-status"></div>
+
+            <p class="section-eyebrow">Production Services Quote</p>
+            <h2 class="section-title" id="review-event">—</h2>
+            <p class="section-desc">Please review the details below before responding.</p>
+
+            <!-- Quote Summary Card -->
+            <div class="quote-summary-card">
+              <div class="summary-grid">
+                <div class="summary-item">
+                  <div class="summary-label">Reference No.</div>
+                  <div class="summary-value code" id="review-ref">—</div>
+                </div>
+                <div class="summary-item">
+                  <div class="summary-label">Total Amount</div>
+                  <div class="summary-value total" id="review-total">—</div>
+                </div>
+              </div>
+              <hr class="summary-divider" />
+              <div class="summary-grid">
+                <div class="summary-item">
+                  <div class="summary-label">Event Dates</div>
+                  <div class="summary-value" id="review-dates">—</div>
+                </div>
+                <div class="summary-item">
+                  <div class="summary-label">Category</div>
+                  <div class="summary-value" id="review-cat">—</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Download PDF -->
+            <a id="download-btn" href="#" target="_blank" class="btn-download">
+              <svg viewBox="0 0 20 20" width="15" height="15" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75v7.69l2.22-2.22a.75.75 0 011.06 1.06l-3.5 3.5a.75.75 0 01-1.06 0l-3.5-3.5a.75.75 0 111.06-1.06l2.22 2.22V3.75A.75.75 0 0110 3zM3.75 15a.75.75 0 000 1.5h12.5a.75.75 0 000-1.5H3.75z" clip-rule="evenodd"/>
+              </svg>
+              Download Full Quote PDF
+            </a>
+
+            <!-- Info notice -->
+            <div class="info-banner">
+              Review the attached PDF carefully before approving. Once approved, your event will be formally confirmed and our team will proceed with scheduling.
+            </div>
+
+            <!-- Inline error -->
+            <div id="inline-error" class="error-banner"></div>
+
+            <!-- Decision Prompt -->
+            <p class="decision-prompt">
+              How would you like to proceed with this quote?
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="action-row">
+              <button class="btn-changes" onclick="showFeedbackPanel()">
+                <div style="font-size:1.375rem;margin-bottom:0.25rem;">✏️</div>
+                <div>Request Changes</div>
+                <div style="font-size:0.6875rem;font-weight:400;color:rgba(255,255,255,0.45);margin-top:3px;">Suggest adjustments</div>
+              </button>
+              <button id="btn-approve" class="btn-approve" onclick="submitApproval()">
+                <div style="font-size:1.375rem;margin-bottom:0.25rem;">✓</div>
+                <div>Approve Quote</div>
+                <div style="font-size:0.6875rem;font-weight:400;color:rgba(255,255,255,0.65);margin-top:3px;">Confirm &amp; proceed</div>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Feedback Panel -->
+        <div id="panel-feedback" style="display:none;">
+          <div class="portal-body">
+
+            <p class="section-eyebrow">Request Changes</p>
+            <h2 class="section-title">Tell us what to adjust</h2>
+            <p class="section-desc">Describe the changes needed and our team will prepare a revised quote.</p>
+
+            <label class="feedback-label" for="feedback-text">
+              Your Notes <span style="color:rgba(255,255,255,0.30);text-transform:none;font-weight:400;letter-spacing:0;">— e.g. equipment counts, timing, room assignments</span>
+            </label>
+            <textarea
+              id="feedback-text"
+              class="feedback-textarea"
+              placeholder="Please describe what needs to be adjusted…"
+              rows="5"
+            ></textarea>
+
+            <div id="feedback-error" class="error-banner"></div>
+
+            <div class="feedback-btn-row">
+              <button class="btn-ghost" onclick="backToReview()">← Back</button>
+              <button id="btn-send-feedback" class="btn-primary" onclick="submitFeedback()">
+                Send Feedback
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- /portal-card -->
+
+      <!-- ── Status / Success Message ──────────────────────────────────────── -->
+      <div id="statusMsg" style="display:none;"></div>
+
+    </div>
+    <!-- /page-wrap -->
+
+  </body>
+</html>
