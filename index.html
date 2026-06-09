@@ -785,7 +785,7 @@
           { name: 'lastName',  label: 'Last Name'  },
           { name: 'email',     label: 'Email'      },
           { name: 'eventName', label: 'Event Name' },
-          { name: 'category',  label: 'Event Type'   },
+          { name: 'category',  label: 'Event Type'  },
           { name: 'startDate', label: 'Start Date' },
           { name: 'endDate',   label: 'End Date'   },
         ];
@@ -930,7 +930,7 @@
           + (getVal('department')  ? rRow('Department', getVal('department'))  : '')
           + (getVal('companyName') ? rRow('Company',    getVal('companyName')) : '')
           + rRow('Event',     getVal('eventName'))
-          + rRow('Category',  getVal('category'))
+          + rRow('Event Type', getVal('category'))
           + rRow('Start Date', getVal('startDate'))
           + rRow('End Date',   getVal('endDate'))
           + rRow('Recurring', recurring)
@@ -1251,10 +1251,19 @@
 
         <!-- Portal Header -->
         <div class="portal-header">
-          <div>
-            <img src="/Assets/BOPS_Logo_Main.png" class="portal-logo" alt="SoFi Stadium"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" />
-            <div class="portal-logo-placeholder" style="display:none;">S</div>
+          <!-- Co-brand logo row -->
+          <div class="flex items-center justify-center gap-12 mb-6 w-full">
+            <img
+              src="/Assets/SoFiLogo_Horizontal_WHITE.png"
+              alt="SoFi Stadium"
+              class="h-20 w-auto object-contain flex-shrink-0 drop-shadow-lg"
+            />
+            <div class="h-20 w-px bg-white/40 flex-shrink-0"></div>
+            <img
+              src="/Assets/BOPS_LOGO_WHITE_HORIZONTAL.png"
+              alt="BOPS"
+              class="w-72 h-auto object-contain flex-shrink-0 drop-shadow-lg"
+            />
           </div>
           <h1 class="portal-title">Production Services</h1>
           <p class="portal-subtitle">Event Inquiry Portal &mdash; SoFi Stadium / HWP Campus</p>
@@ -1340,7 +1349,7 @@
 
             <div class="grid-2">
               <div class="field-group">
-                <label class="field-label">Category <span class="req">*</span></label>
+                <label class="field-label">Event Type <span class="req">*</span></label>
                 <select id="category-select" name="category" class="field-input">
                   <option value="">Loading categories...</option>
                 </select>
