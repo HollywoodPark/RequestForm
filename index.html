@@ -6,10 +6,13 @@
     <title>Event Inquiry | SoFi Stadium Production Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- intl-tel-input -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.19/build/css/intlTelInput.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.19/build/css/intlTelInput.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.19/build/js/intlTelInput.min.js"></script>
     <!-- Flatpickr date picker -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
       /* ── Custom Fonts ─────────────────────────────────────────────────────── */
@@ -26,30 +29,32 @@
 
       /* ── Design Tokens ─────────────────────────────────────────────────────── */
       :root {
-        --sofi-blue:        #003594;
-        --sofi-navy:        #0A2957;
-        --rams-gold:        #FFAD00;
-        --glass-bg:         rgba(255, 255, 255, 0.05);
-        --glass-blur:       15px;
-        --glass-border:     rgba(255, 255, 255, 0.10);
-        --text-primary:     rgba(255, 255, 255, 0.95);
-        --text-muted:       rgba(255, 255, 255, 0.55);
-        --text-subtle:      rgba(255, 255, 255, 0.35);
-        --input-bg:         rgba(255, 255, 255, 0.07);
-        --input-border:     rgba(255, 255, 255, 0.15);
-        --input-focus:      #FFAD00;
-        --card-bg:          rgba(255, 255, 255, 0.04);
-        --card-border:      rgba(255, 255, 255, 0.08);
+        --sofi-blue: #003594;
+        --sofi-navy: #0a2957;
+        --rams-gold: #ffad00;
+        --glass-bg: rgba(255, 255, 255, 0.05);
+        --glass-blur: 15px;
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --text-primary: rgba(255, 255, 255, 0.95);
+        --text-muted: rgba(255, 255, 255, 0.55);
+        --text-subtle: rgba(255, 255, 255, 0.35);
+        --input-bg: rgba(255, 255, 255, 0.07);
+        --input-border: rgba(255, 255, 255, 0.15);
+        --input-focus: #ffad00;
+        --card-bg: rgba(255, 255, 255, 0.04);
+        --card-border: rgba(255, 255, 255, 0.08);
       }
 
-      * { box-sizing: border-box; }
+      * {
+        box-sizing: border-box;
+      }
 
       body {
         margin: 0;
         padding: 0;
         min-height: 100vh;
         font-family: 'Inter', 'DINPro Medium', sans-serif;
-        background: linear-gradient(135deg, #060d1f 0%, #0A2957 50%, #060d1f 100%);
+        background: linear-gradient(135deg, #060d1f 0%, #0a2957 50%, #060d1f 100%);
         overflow-x: hidden;
       }
 
@@ -65,7 +70,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: 0.40;
+        opacity: 0.4;
       }
 
       .scene-overlay {
@@ -120,7 +125,11 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: radial-gradient(ellipse at 70% -30%, rgba(255,173,0,0.18) 0%, transparent 60%);
+        background: radial-gradient(
+          ellipse at 70% -30%,
+          rgba(255, 173, 0, 0.18) 0%,
+          transparent 60%
+        );
         pointer-events: none;
       }
 
@@ -129,16 +138,18 @@
         max-width: 220px;
         object-fit: contain;
         margin-bottom: 0.75rem;
-        filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5)) brightness(1.1);
+        filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.5)) brightness(1.1);
       }
 
       .portal-logo-placeholder {
-        width: 60px; height: 60px;
+        width: 60px;
+        height: 60px;
         border-radius: 12px;
-        background: rgba(255,255,255,0.12);
-        border: 1px solid rgba(255,255,255,0.15);
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         display: inline-flex;
-        align-items: center; justify-content: center;
+        align-items: center;
+        justify-content: center;
         font-family: 'Monday Pro', sans-serif;
         font-size: 1.75rem;
         color: #fff;
@@ -152,12 +163,12 @@
         color: #fff;
         letter-spacing: -0.5px;
         margin: 0 0 0.25rem;
-        text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
       }
 
       .portal-subtitle {
         font-size: 0.8125rem;
-        color: rgba(255,255,255,0.60);
+        color: rgba(255, 255, 255, 0.6);
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin: 0;
@@ -166,9 +177,16 @@
       .portal-gold-bar {
         position: absolute;
         bottom: 0;
-        left: 0; right: 0;
+        left: 0;
+        right: 0;
         height: 4px;
-        background: linear-gradient(90deg, transparent 0%, var(--rams-gold) 40%, var(--rams-gold) 60%, transparent 100%);
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--rams-gold) 40%,
+          var(--rams-gold) 60%,
+          transparent 100%
+        );
       }
 
       /* ── Progress Stepper ────────────────────────────────────────────────── */
@@ -211,21 +229,23 @@
       .step-circle.active {
         background: var(--sofi-blue);
         color: #fff;
-        box-shadow: 0 0 0 4px rgba(0,53,148,0.30), 0 0 20px rgba(0,83,200,0.4);
-        border-color: rgba(255,255,255,0.3);
+        box-shadow:
+          0 0 0 4px rgba(0, 53, 148, 0.3),
+          0 0 20px rgba(0, 83, 200, 0.4);
+        border-color: rgba(255, 255, 255, 0.3);
       }
 
       .step-circle.done {
         background: var(--rams-gold);
-        color: #0A2957;
-        border-color: rgba(255,173,0,0.5);
-        box-shadow: 0 0 12px rgba(255,173,0,0.3);
+        color: #0a2957;
+        border-color: rgba(255, 173, 0, 0.5);
+        box-shadow: 0 0 12px rgba(255, 173, 0, 0.3);
       }
 
       .step-circle.inactive {
-        background: rgba(255,255,255,0.06);
-        color: rgba(255,255,255,0.35);
-        border-color: rgba(255,255,255,0.12);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.35);
+        border-color: rgba(255, 255, 255, 0.12);
       }
 
       .step-label {
@@ -239,9 +259,15 @@
         transition: color 0.3s;
       }
 
-      .step-label.active  { color: rgba(255,255,255,0.90); }
-      .step-label.done    { color: var(--rams-gold); }
-      .step-label.inactive{ color: rgba(255,255,255,0.35); }
+      .step-label.active {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .step-label.done {
+        color: var(--rams-gold);
+      }
+      .step-label.inactive {
+        color: rgba(255, 255, 255, 0.35);
+      }
 
       .step-connector {
         flex: 1;
@@ -251,28 +277,38 @@
         transition: background 0.3s;
       }
 
-      .step-connector.done   { background: var(--rams-gold); }
-      .step-connector.inactive{ background: rgba(255,255,255,0.12); }
+      .step-connector.done {
+        background: var(--rams-gold);
+      }
+      .step-connector.inactive {
+        background: rgba(255, 255, 255, 0.12);
+      }
 
       /* ── Form Content ────────────────────────────────────────────────────── */
-      .form-content { padding: 2rem 2.5rem 2.5rem; }
+      .form-content {
+        padding: 2rem 2.5rem 2.5rem;
+      }
 
-      .step-pane { display: none; }
-      .step-pane.active { display: block; }
+      .step-pane {
+        display: none;
+      }
+      .step-pane.active {
+        display: block;
+      }
 
       /* ── Section Title ───────────────────────────────────────────────────── */
       .section-title {
         font-family: 'Monday Pro', 'Montserrat', sans-serif;
         font-size: 1.375rem;
         font-weight: 800;
-        color: rgba(255,255,255,0.95);
+        color: rgba(255, 255, 255, 0.95);
         margin-bottom: 0.25rem;
         letter-spacing: -0.3px;
       }
 
       .section-desc {
         font-size: 0.875rem;
-        color: rgba(255,255,255,0.55);
+        color: rgba(255, 255, 255, 0.55);
         margin-bottom: 1.75rem;
       }
 
@@ -284,12 +320,20 @@
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.09em;
-        color: rgba(255,255,255,0.70);
+        color: rgba(255, 255, 255, 0.7);
         margin-bottom: 0.375rem;
       }
 
-      .field-label .req { color: #FF6B8A; }
-      .field-label .opt { font-family: 'Inter', 'DINPro Medium', sans-serif; font-weight: 400; text-transform: none; color: rgba(255,255,255,0.35); letter-spacing: 0; }
+      .field-label .req {
+        color: #ff6b8a;
+      }
+      .field-label .opt {
+        font-family: 'Inter', 'DINPro Medium', sans-serif;
+        font-weight: 400;
+        text-transform: none;
+        color: rgba(255, 255, 255, 0.35);
+        letter-spacing: 0;
+      }
 
       /* ── Inputs ──────────────────────────────────────────────────────────── */
       .field-input {
@@ -299,19 +343,24 @@
         border-radius: 12px;
         font-family: 'Inter', 'DINPro Medium', sans-serif;
         font-size: 0.9375rem;
-        color: rgba(255,255,255,0.90);
+        color: rgba(255, 255, 255, 0.9);
         background: var(--input-bg);
-        transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          background 0.2s;
         outline: none;
       }
 
       .field-input:focus {
         border-color: var(--rams-gold);
-        box-shadow: 0 0 0 3px rgba(255,173,0,0.15);
-        background: rgba(255,255,255,0.10);
+        box-shadow: 0 0 0 3px rgba(255, 173, 0, 0.15);
+        background: rgba(255, 255, 255, 0.1);
       }
 
-      .field-input::placeholder { color: rgba(255,255,255,0.25); }
+      .field-input::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+      }
 
       select.field-input {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='rgba(255,255,255,0.5)'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
@@ -325,26 +374,50 @@
 
       select.field-input option {
         background: #0c1a3a;
-        color: rgba(255,255,255,0.90);
+        color: rgba(255, 255, 255, 0.9);
       }
 
-      textarea.field-input { resize: vertical; min-height: 80px; }
+      textarea.field-input {
+        resize: vertical;
+        min-height: 80px;
+      }
 
       /* ── Field Groups ────────────────────────────────────────────────────── */
-      .field-group { margin-bottom: 1.25rem; }
-      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-      .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+      .field-group {
+        margin-bottom: 1.25rem;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+      }
 
       @media (max-width: 640px) {
-        .grid-2, .grid-3 { grid-template-columns: 1fr; }
-        .concierge-container { width: 96%; border-radius: 20px; }
-        .form-content, .stepper-wrap, .portal-header { padding-left: 1.25rem; padding-right: 1.25rem; }
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+        .concierge-container {
+          width: 96%;
+          border-radius: 20px;
+        }
+        .form-content,
+        .stepper-wrap,
+        .portal-header {
+          padding-left: 1.25rem;
+          padding-right: 1.25rem;
+        }
       }
 
       /* ── Divider ─────────────────────────────────────────────────────────── */
       .form-divider {
         border: none;
-        border-top: 1px solid rgba(255,255,255,0.08);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         margin: 1.5rem 0;
       }
 
@@ -354,7 +427,7 @@
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        color: rgba(255,255,255,0.50);
+        color: rgba(255, 255, 255, 0.5);
         margin-bottom: 1.25rem;
       }
 
@@ -364,37 +437,77 @@
         align-items: center;
         gap: 0.875rem;
         padding: 1rem 1.125rem;
-        border: 1.5px solid rgba(255,255,255,0.10);
+        border: 1.5px solid rgba(255, 255, 255, 0.1);
         border-radius: 14px;
         cursor: pointer;
         transition: all 0.2s;
-        background: rgba(255,255,255,0.04);
+        background: rgba(255, 255, 255, 0.04);
       }
 
-      .venue-card:hover { border-color: rgba(255,173,0,0.4); background: rgba(255,173,0,0.05); }
-      .venue-card.selected { border-color: var(--rams-gold); background: rgba(255,173,0,0.08); box-shadow: 0 0 0 1px rgba(255,173,0,0.2); }
+      .venue-card:hover {
+        border-color: rgba(255, 173, 0, 0.4);
+        background: rgba(255, 173, 0, 0.05);
+      }
+      .venue-card.selected {
+        border-color: var(--rams-gold);
+        background: rgba(255, 173, 0, 0.08);
+        box-shadow: 0 0 0 1px rgba(255, 173, 0, 0.2);
+      }
 
-      .venue-card input[type="radio"] { width: 1rem; height: 1rem; accent-color: var(--rams-gold); flex-shrink: 0; cursor: pointer; }
+      .venue-card input[type='radio'] {
+        width: 1rem;
+        height: 1rem;
+        accent-color: var(--rams-gold);
+        flex-shrink: 0;
+        cursor: pointer;
+      }
 
       .venue-icon {
-        width: 2rem; height: 2rem;
+        width: 2rem;
+        height: 2rem;
         border-radius: 8px;
-        display: flex; align-items: center; justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex-shrink: 0;
       }
 
-      .venue-icon svg { width: 1.125rem; height: 1.125rem; }
+      .venue-icon svg {
+        width: 1.125rem;
+        height: 1.125rem;
+      }
 
-      .venue-name { font-family: 'Monday Pro', sans-serif; font-weight: 700; font-size: 0.875rem; color: rgba(255,255,255,0.90); }
-      .venue-hint { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 1px; }
-      .venue-badge { margin-left: auto; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--rams-gold); background: rgba(255,173,0,0.12); padding: 2px 8px; border-radius: 10px; white-space: nowrap; border: 1px solid rgba(255,173,0,0.25); }
+      .venue-name {
+        font-family: 'Monday Pro', sans-serif;
+        font-weight: 700;
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .venue-hint {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.45);
+        margin-top: 1px;
+      }
+      .venue-badge {
+        margin-left: auto;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--rams-gold);
+        background: rgba(255, 173, 0, 0.12);
+        padding: 2px 8px;
+        border-radius: 10px;
+        white-space: nowrap;
+        border: 1px solid rgba(255, 173, 0, 0.25);
+      }
 
       /* ── Tech Section Cards ──────────────────────────────────────────────── */
       .tech-card {
         border-radius: 16px;
         overflow: hidden;
         margin-bottom: 1rem;
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       .tech-card-header {
@@ -409,17 +522,27 @@
 
       .tech-card-body {
         padding: 1rem;
-        border-top: 1px solid rgba(255,255,255,0.06);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
         border-radius: 0 0 16px 16px;
-        background: rgba(255,255,255,0.03);
+        background: rgba(255, 255, 255, 0.03);
       }
 
-      .tech-card.sofi-card .tech-card-header   { background: linear-gradient(90deg, rgba(0,53,148,0.95), rgba(0,80,200,0.90)); }
-      .tech-card.ytt-card  .tech-card-header   { background: linear-gradient(90deg, rgba(91,33,182,0.95), rgba(109,40,217,0.90)); }
-      .tech-card.campus-card .tech-card-header { background: linear-gradient(90deg, rgba(6,95,70,0.95), rgba(5,150,105,0.90)); }
+      .tech-card.sofi-card .tech-card-header {
+        background: linear-gradient(90deg, rgba(0, 53, 148, 0.95), rgba(0, 80, 200, 0.9));
+      }
+      .tech-card.ytt-card .tech-card-header {
+        background: linear-gradient(90deg, rgba(91, 33, 182, 0.95), rgba(109, 40, 217, 0.9));
+      }
+      .tech-card.campus-card .tech-card-header {
+        background: linear-gradient(90deg, rgba(6, 95, 70, 0.95), rgba(5, 150, 105, 0.9));
+      }
 
       /* ── Toggle Buttons ──────────────────────────────────────────────────── */
-      .toggle-group { display: flex; gap: 0.375rem; flex-shrink: 0; }
+      .toggle-group {
+        display: flex;
+        gap: 0.375rem;
+        flex-shrink: 0;
+      }
 
       .toggle-btn {
         padding: 0.4375rem 1rem;
@@ -427,15 +550,24 @@
         font-size: 0.75rem;
         font-weight: 700;
         border-radius: 8px;
-        border: 1.5px solid rgba(255,255,255,0.15);
-        background: rgba(255,255,255,0.06);
-        color: rgba(255,255,255,0.65);
+        border: 1.5px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.65);
         cursor: pointer;
         transition: all 0.15s;
       }
 
-      .toggle-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.30); color: rgba(255,255,255,0.90); }
-      .toggle-btn.active { background: var(--sofi-blue); color: #fff; border-color: rgba(0,83,200,0.8); box-shadow: 0 2px 8px rgba(0,53,148,0.4); }
+      .toggle-btn:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .toggle-btn.active {
+        background: var(--sofi-blue);
+        color: #fff;
+        border-color: rgba(0, 83, 200, 0.8);
+        box-shadow: 0 2px 8px rgba(0, 53, 148, 0.4);
+      }
 
       .toggle-row {
         display: flex;
@@ -445,51 +577,81 @@
         margin-bottom: 0.875rem;
       }
 
-      .toggle-row:last-child { margin-bottom: 0; }
+      .toggle-row:last-child {
+        margin-bottom: 0;
+      }
 
-      .toggle-question { font-weight: 600; font-size: 0.875rem; color: rgba(255,255,255,0.85); }
-      .toggle-warning  { font-size: 0.6875rem; color: #FCD34D; margin-top: 2px; }
+      .toggle-question {
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .toggle-warning {
+        font-size: 0.6875rem;
+        color: #fcd34d;
+        margin-top: 2px;
+      }
 
       .sub-question {
         margin-top: 0.75rem;
         padding-left: 1rem;
-        border-left: 2px solid rgba(255,173,0,0.30);
+        border-left: 2px solid rgba(255, 173, 0, 0.3);
       }
 
       /* ── Navigation Buttons ──────────────────────────────────────────────── */
       .btn-primary {
         padding: 0.875rem 2rem;
-        background: linear-gradient(135deg, var(--sofi-blue) 0%, #0052CC 100%);
+        background: linear-gradient(135deg, var(--sofi-blue) 0%, #0052cc 100%);
         color: #fff;
         font-family: 'Monday Pro', sans-serif;
         font-size: 0.875rem;
         font-weight: 700;
         border-radius: 12px;
-        border: 1px solid rgba(255,255,255,0.15);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         cursor: pointer;
         transition: all 0.2s;
         letter-spacing: 0.02em;
-        box-shadow: 0 4px 20px rgba(0,53,148,0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+        box-shadow:
+          0 4px 20px rgba(0, 53, 148, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.15);
       }
 
-      .btn-primary:hover { background: linear-gradient(135deg, #002a78 0%, #003594 100%); box-shadow: 0 8px 28px rgba(0,53,148,0.55); transform: translateY(-1px); }
-      .btn-primary:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(0,53,148,0.3); }
-      .btn-primary:disabled { background: rgba(255,255,255,0.12); box-shadow: none; cursor: not-allowed; transform: none; border-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #002a78 0%, #003594 100%);
+        box-shadow: 0 8px 28px rgba(0, 53, 148, 0.55);
+        transform: translateY(-1px);
+      }
+      .btn-primary:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 53, 148, 0.3);
+      }
+      .btn-primary:disabled {
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: none;
+        cursor: not-allowed;
+        transform: none;
+        border-color: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.4);
+      }
 
       .btn-secondary {
         padding: 0.875rem 1.5rem;
-        background: rgba(255,255,255,0.07);
-        color: rgba(255,255,255,0.80);
+        background: rgba(255, 255, 255, 0.07);
+        color: rgba(255, 255, 255, 0.8);
         font-family: 'Monday Pro', sans-serif;
         font-size: 0.875rem;
         font-weight: 700;
         border-radius: 12px;
-        border: 1.5px solid rgba(255,255,255,0.15);
+        border: 1.5px solid rgba(255, 255, 255, 0.15);
         cursor: pointer;
         transition: all 0.2s;
       }
 
-      .btn-secondary:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.30); color: #fff; }
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.13);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: #fff;
+      }
 
       /* ── Error Banner ────────────────────────────────────────────────────── */
       .error-banner {
@@ -498,28 +660,40 @@
         border-radius: 10px;
         background: rgba(190, 18, 60, 0.15);
         border: 1px solid rgba(254, 205, 211, 0.25);
-        color: #FF8FAB;
+        color: #ff8fab;
         font-size: 0.875rem;
         display: none;
       }
 
       /* ── Review Card ─────────────────────────────────────────────────────── */
       .review-card {
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.10);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 14px;
         padding: 1.25rem;
         margin-bottom: 1.25rem;
         font-size: 0.875rem;
-        color: rgba(255,255,255,0.80);
+        color: rgba(255, 255, 255, 0.8);
       }
 
-      .review-card .text-slate-500 { color: rgba(255,255,255,0.50) !important; }
-      .review-card .text-slate-800 { color: rgba(255,255,255,0.90) !important; }
-      .review-card .text-slate-600 { color: rgba(255,255,255,0.60) !important; }
-      .review-card .border-slate-100 { border-color: rgba(255,255,255,0.08) !important; }
-      .review-card .text-slate-400 { color: rgba(255,255,255,0.35) !important; }
-      .review-card .border-t { border-color: rgba(255,255,255,0.08) !important; }
+      .review-card .text-slate-500 {
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
+      .review-card .text-slate-800 {
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+      .review-card .text-slate-600 {
+        color: rgba(255, 255, 255, 0.6) !important;
+      }
+      .review-card .border-slate-100 {
+        border-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      .review-card .text-slate-400 {
+        color: rgba(255, 255, 255, 0.35) !important;
+      }
+      .review-card .border-t {
+        border-color: rgba(255, 255, 255, 0.08) !important;
+      }
 
       /* ── Glassmorphism Success Card ──────────────────────────────────────── */
       #statusMsg {
@@ -531,21 +705,22 @@
       }
 
       .success-glass-card {
-        background: rgba(255,255,255,0.06);
+        background: rgba(255, 255, 255, 0.06);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255,255,255,0.12);
+        border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 24px;
         padding: 3.5rem 2.5rem;
         text-align: center;
         box-shadow:
-          0 24px 80px rgba(0,0,0,0.50),
-          0 4px 20px rgba(0,0,0,0.30);
+          0 24px 80px rgba(0, 0, 0, 0.5),
+          0 4px 20px rgba(0, 0, 0, 0.3);
       }
 
       /* SVG Checkmark Animation */
       .check-wrap {
-        width: 80px; height: 80px;
+        width: 80px;
+        height: 80px;
         margin: 0 auto 1.5rem;
       }
 
@@ -570,25 +745,29 @@
       }
 
       @keyframes check-circle-anim {
-        to { stroke-dashoffset: 0; }
+        to {
+          stroke-dashoffset: 0;
+        }
       }
 
       @keyframes check-mark-anim {
-        to { stroke-dashoffset: 0; }
+        to {
+          stroke-dashoffset: 0;
+        }
       }
 
       .success-title {
         font-family: 'Monday Pro', 'Montserrat', sans-serif;
         font-size: 1.75rem;
         font-weight: 900;
-        color: rgba(255,255,255,0.95);
+        color: rgba(255, 255, 255, 0.95);
         margin-bottom: 0.75rem;
         letter-spacing: -0.5px;
       }
 
       .success-body {
         font-size: 1rem;
-        color: rgba(255,255,255,0.60);
+        color: rgba(255, 255, 255, 0.6);
         max-width: 420px;
         margin: 0 auto 2rem;
         line-height: 1.6;
@@ -598,8 +777,8 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        background: rgba(255,173,0,0.12);
-        border: 1px solid rgba(255,173,0,0.30);
+        background: rgba(255, 173, 0, 0.12);
+        border: 1px solid rgba(255, 173, 0, 0.3);
         border-radius: 10px;
         padding: 0.5rem 1rem;
         margin-bottom: 2rem;
@@ -622,13 +801,16 @@
         border-radius: 12px;
         text-decoration: none;
         letter-spacing: 0.02em;
-        box-shadow: 0 4px 20px rgba(0,53,148,0.30);
+        box-shadow: 0 4px 20px rgba(0, 53, 148, 0.3);
         transition: all 0.2s;
         cursor: pointer;
         border: none;
       }
 
-      .btn-return:hover { box-shadow: 0 6px 28px rgba(0,53,148,0.40); transform: translateY(-1px); }
+      .btn-return:hover {
+        box-shadow: 0 6px 28px rgba(0, 53, 148, 0.4);
+        transform: translateY(-1px);
+      }
 
       .error-glass-card {
         background: rgba(190, 18, 60, 0.12);
@@ -636,62 +818,160 @@
         -webkit-backdrop-filter: blur(20px);
         border-radius: 16px;
         padding: 1.25rem 1.5rem;
-        border: 1px solid rgba(254,100,130,0.25);
-        color: #FF8FAB;
+        border: 1px solid rgba(254, 100, 130, 0.25);
+        color: #ff8fab;
         font-size: 0.9rem;
       }
 
       /* ── Recurring dates reveal ──────────────────────────────────────────── */
       #recurring-dates-section {
         display: none;
-        background: rgba(255,173,0,0.06);
-        border: 1px solid rgba(255,173,0,0.20);
+        background: rgba(255, 173, 0, 0.06);
+        border: 1px solid rgba(255, 173, 0, 0.2);
         border-radius: 12px;
         padding: 1rem;
         margin-top: 0.75rem;
       }
 
       /* ── intl-tel-input dark overrides ─────────────────────────────────── */
-      .iti { width: 100%; }
-      .iti__tel-input { background: var(--input-bg) !important; color: rgba(255,255,255,0.90) !important; border: 1.5px solid var(--input-border) !important; border-radius: 12px !important; }
-      .iti__tel-input:focus { border-color: var(--rams-gold) !important; box-shadow: 0 0 0 3px rgba(255,173,0,0.15) !important; background: rgba(255,255,255,0.10) !important; }
-      .iti__tel-input::placeholder { color: rgba(255,255,255,0.25) !important; }
-      .iti__dropdown-content { background: #0c1a3a !important; border: 1px solid rgba(255,255,255,0.12) !important; border-radius: 12px !important; box-shadow: 0 12px 40px rgba(0,0,0,0.6) !important; }
-      .iti__country-list { background: #0c1a3a !important; }
-      .iti__country { color: rgba(255,255,255,0.80) !important; }
-      .iti__country:hover, .iti__country.iti__highlight { background: rgba(255,255,255,0.08) !important; }
-      .iti__dial-code { color: rgba(255,255,255,0.45) !important; }
-      .iti__search-input { background: rgba(255,255,255,0.08) !important; color: rgba(255,255,255,0.85) !important; border: 1px solid rgba(255,255,255,0.15) !important; border-radius: 8px !important; }
-      .iti__selected-country-primary { background: rgba(255,255,255,0.07) !important; border-radius: 10px 0 0 10px !important; }
-      .iti__selected-country-primary:hover { background: rgba(255,255,255,0.12) !important; }
-      .iti__arrow { border-top-color: rgba(255,255,255,0.50) !important; }
-      .iti__arrow--up { border-bottom-color: rgba(255,255,255,0.50) !important; }
-      .iti__selected-dial-code { color: rgba(255,255,255,0.75) !important; }
+      .iti {
+        width: 100%;
+      }
+      .iti__tel-input {
+        background: var(--input-bg) !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+        border: 1.5px solid var(--input-border) !important;
+        border-radius: 12px !important;
+      }
+      .iti__tel-input:focus {
+        border-color: var(--rams-gold) !important;
+        box-shadow: 0 0 0 3px rgba(255, 173, 0, 0.15) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+      }
+      .iti__tel-input::placeholder {
+        color: rgba(255, 255, 255, 0.25) !important;
+      }
+      .iti__dropdown-content {
+        background: #0c1a3a !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6) !important;
+      }
+      .iti__country-list {
+        background: #0c1a3a !important;
+      }
+      .iti__country {
+        color: rgba(255, 255, 255, 0.8) !important;
+      }
+      .iti__country:hover,
+      .iti__country.iti__highlight {
+        background: rgba(255, 255, 255, 0.08) !important;
+      }
+      .iti__dial-code {
+        color: rgba(255, 255, 255, 0.45) !important;
+      }
+      .iti__search-input {
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 8px !important;
+      }
+      .iti__selected-country-primary {
+        background: rgba(255, 255, 255, 0.07) !important;
+        border-radius: 10px 0 0 10px !important;
+      }
+      .iti__selected-country-primary:hover {
+        background: rgba(255, 255, 255, 0.12) !important;
+      }
+      .iti__arrow {
+        border-top-color: rgba(255, 255, 255, 0.5) !important;
+      }
+      .iti__arrow--up {
+        border-bottom-color: rgba(255, 255, 255, 0.5) !important;
+      }
+      .iti__selected-dial-code {
+        color: rgba(255, 255, 255, 0.75) !important;
+      }
 
       /* ── Flatpickr dark overrides ───────────────────────────────────────── */
-      .flatpickr-calendar { background: #0c1a3a !important; border: 1px solid rgba(255,255,255,0.12) !important; border-radius: 16px !important; box-shadow: 0 12px 40px rgba(0,0,0,0.6) !important; color: rgba(255,255,255,0.85) !important; }
-      .flatpickr-months { background: transparent !important; }
-      .flatpickr-month { color: rgba(255,255,255,0.90) !important; fill: rgba(255,255,255,0.90) !important; }
-      .flatpickr-current-month, .flatpickr-current-month .numInputWrapper input { color: rgba(255,255,255,0.95) !important; }
-      .flatpickr-weekday { color: rgba(255,255,255,0.50) !important; background: transparent !important; }
-      .flatpickr-day { color: rgba(255,255,255,0.75) !important; border-radius: 8px !important; }
-      .flatpickr-day:hover { background: rgba(255,255,255,0.10) !important; border-color: transparent !important; color: #fff !important; }
-      .flatpickr-day.selected, .flatpickr-day.selected:hover { background: var(--sofi-blue) !important; border-color: var(--sofi-blue) !important; color: #fff !important; box-shadow: 0 2px 8px rgba(0,53,148,0.4) !important; }
-      .flatpickr-day.today { border-color: var(--rams-gold) !important; }
-      .flatpickr-day.today:hover { background: rgba(255,173,0,0.15) !important; }
-      .flatpickr-day.flatpickr-disabled { color: rgba(255,255,255,0.20) !important; }
-      .flatpickr-prev-month svg, .flatpickr-next-month svg { fill: rgba(255,255,255,0.65) !important; }
-      .flatpickr-prev-month:hover svg, .flatpickr-next-month:hover svg { fill: #fff !important; }
-      .numInputWrapper:hover { background: rgba(255,255,255,0.06) !important; }
-      .flatpickr-input { font-family: 'Inter', 'DINPro Medium', sans-serif !important; }
+      .flatpickr-calendar {
+        background: #0c1a3a !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6) !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+      }
+      .flatpickr-months {
+        background: transparent !important;
+      }
+      .flatpickr-month {
+        color: rgba(255, 255, 255, 0.9) !important;
+        fill: rgba(255, 255, 255, 0.9) !important;
+      }
+      .flatpickr-current-month,
+      .flatpickr-current-month .numInputWrapper input {
+        color: rgba(255, 255, 255, 0.95) !important;
+      }
+      .flatpickr-weekday {
+        color: rgba(255, 255, 255, 0.5) !important;
+        background: transparent !important;
+      }
+      .flatpickr-day {
+        color: rgba(255, 255, 255, 0.75) !important;
+        border-radius: 8px !important;
+      }
+      .flatpickr-day:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-color: transparent !important;
+        color: #fff !important;
+      }
+      .flatpickr-day.selected,
+      .flatpickr-day.selected:hover {
+        background: var(--sofi-blue) !important;
+        border-color: var(--sofi-blue) !important;
+        color: #fff !important;
+        box-shadow: 0 2px 8px rgba(0, 53, 148, 0.4) !important;
+      }
+      .flatpickr-day.today {
+        border-color: var(--rams-gold) !important;
+      }
+      .flatpickr-day.today:hover {
+        background: rgba(255, 173, 0, 0.15) !important;
+      }
+      .flatpickr-day.flatpickr-disabled {
+        color: rgba(255, 255, 255, 0.2) !important;
+      }
+      .flatpickr-prev-month svg,
+      .flatpickr-next-month svg {
+        fill: rgba(255, 255, 255, 0.65) !important;
+      }
+      .flatpickr-prev-month:hover svg,
+      .flatpickr-next-month:hover svg {
+        fill: #fff !important;
+      }
+      .numInputWrapper:hover {
+        background: rgba(255, 255, 255, 0.06) !important;
+      }
+      .flatpickr-input {
+        font-family: 'Inter', 'DINPro Medium', sans-serif !important;
+      }
 
       /* ── Misc Tailwind color overrides for dark bg ──────────────────────── */
-      .text-slate-400 { color: rgba(255,255,255,0.45) !important; }
-      .text-amber-600 { color: #FCD34D !important; }
+      .text-slate-400 {
+        color: rgba(255, 255, 255, 0.45) !important;
+      }
+      .text-amber-600 {
+        color: #fcd34d !important;
+      }
 
       /* ── Reduced motion ─────────────────────────────────────────────────── */
       @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
       }
     </style>
 
@@ -723,11 +1003,12 @@
       // ── Toggle (Yes / No) ────────────────────────────────────────────────────
       function setToggle(fieldName, value, btn) {
         document.getElementById('toggle-input-' + fieldName).value = value;
-        btn.closest('.toggle-group').querySelectorAll('button').forEach(function(b) {
-          b.className = b.dataset.val === value
-            ? 'toggle-btn active'
-            : 'toggle-btn';
-        });
+        btn
+          .closest('.toggle-group')
+          .querySelectorAll('button')
+          .forEach(function (b) {
+            b.className = b.dataset.val === value ? 'toggle-btn active' : 'toggle-btn';
+          });
         var sub = document.getElementById('sub-' + fieldName);
         if (sub) sub.style.display = value === 'yes' ? 'block' : 'none';
       }
@@ -736,10 +1017,11 @@
       function updateStepper(n) {
         for (var i = 1; i <= 3; i++) {
           var circle = document.getElementById('step-circle-' + i);
-          var label  = document.getElementById('step-label-' + i);
+          var label = document.getElementById('step-label-' + i);
           if (i < n) {
             circle.className = 'step-circle done';
-            circle.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+            circle.innerHTML =
+              '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
             label.className = 'step-label done';
           } else if (i === n) {
             circle.className = 'step-circle active';
@@ -758,17 +1040,19 @@
       }
 
       function showStep(n) {
-        document.querySelectorAll('.step-pane').forEach(function(el) {
+        document.querySelectorAll('.step-pane').forEach(function (el) {
           el.classList.remove('active');
           el.style.display = 'none';
         });
         var pane = document.getElementById('step-' + n);
-        if (pane) { pane.style.display = 'block'; pane.classList.add('active'); }
+        if (pane) {
+          pane.style.display = 'block';
+          pane.classList.add('active');
+        }
         updateStepper(n);
         currentStep = n;
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
-
 
       // ── Validation ───────────────────────────────────────────────────────────
       function showError(msg) {
@@ -776,18 +1060,20 @@
         el.textContent = msg;
         el.style.display = 'block';
         el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        setTimeout(function() { el.style.display = 'none'; }, 7000);
+        setTimeout(function () {
+          el.style.display = 'none';
+        }, 7000);
       }
 
       function validateStep1() {
         var required = [
           { name: 'firstName', label: 'First Name' },
-          { name: 'lastName',  label: 'Last Name'  },
-          { name: 'email',     label: 'Email'      },
+          { name: 'lastName', label: 'Last Name' },
+          { name: 'email', label: 'Email' },
           { name: 'eventName', label: 'Event Name' },
-          { name: 'category',  label: 'Event Type'  },
+          { name: 'category', label: 'Event Type' },
           { name: 'startDate', label: 'Start Date' },
-          { name: 'endDate',   label: 'End Date'   },
+          { name: 'endDate', label: 'End Date' },
         ];
         for (var i = 0; i < required.length; i++) {
           var el = document.querySelector('[name="' + required[i].name + '"]');
@@ -817,7 +1103,7 @@
           var venueInput = document.querySelector('input[name="locationId"]:checked');
           venueType = venueInput ? venueInput.dataset.vtype : 'other';
           var branch = activeBranch();
-          ['sofi', 'ytt', 'campus'].forEach(function(t) {
+          ['sofi', 'ytt', 'campus'].forEach(function (t) {
             var el = document.getElementById('tech-' + t);
             if (el) el.style.display = t === branch ? 'block' : 'none';
           });
@@ -841,21 +1127,36 @@
         var el = document.getElementById('toggle-input-' + id);
         return el ? el.value : '';
       }
-      function isYes(id) { return getToggle(id) === 'yes'; }
+      function isYes(id) {
+        return getToggle(id) === 'yes';
+      }
 
       // ── Review Builder ────────────────────────────────────────────────────────
       function rRow(label, value) {
         if (!value) return '';
-        return '<div class="text-slate-500 text-xs uppercase font-semibold tracking-wide" style="font-family:\'Monday Pro\',sans-serif;">' + label + '</div>'
-             + '<div class="text-slate-800 font-medium mb-2" style="font-family:\'DINPro Medium\',sans-serif;">' + value + '</div>';
+        return (
+          '<div class="text-slate-500 text-xs uppercase font-semibold tracking-wide" style="font-family:\'Monday Pro\',sans-serif;">' +
+          label +
+          '</div>' +
+          '<div class="text-slate-800 font-medium mb-2" style="font-family:\'DINPro Medium\',sans-serif;">' +
+          value +
+          '</div>'
+        );
       }
       function tLine(label, value) {
         if (!value || value === 'no' || value === '') return '';
-        var disp = value === 'yes'
-          ? '<span style="color:#059669;font-weight:700;">&#10003; Yes</span>'
-          : '<span style="font-weight:600;">' + value + '</span>';
-        return '<div class="flex justify-between py-1.5 border-b border-slate-100 text-sm">'
-             + '<span class="text-slate-600">' + label + '</span>' + disp + '</div>';
+        var disp =
+          value === 'yes'
+            ? '<span style="color:#059669;font-weight:700;">&#10003; Yes</span>'
+            : '<span style="font-weight:600;">' + value + '</span>';
+        return (
+          '<div class="flex justify-between py-1.5 border-b border-slate-100 text-sm">' +
+          '<span class="text-slate-600">' +
+          label +
+          '</span>' +
+          disp +
+          '</div>'
+        );
       }
 
       function buildTechSummary() {
@@ -883,24 +1184,30 @@
             p.push(tLine('&nbsp;&nbsp;Content Source', getVal('sofiInfinitySource')));
           }
           p.push(tLine('Ribbon Boards', getToggle('sofiRibbonBoards')));
-          if (isYes('sofiRibbonBoards')) p.push(tLine('&nbsp;&nbsp;Coverage', getVal('sofiRibbonCoverage')));
+          if (isYes('sofiRibbonBoards'))
+            p.push(tLine('&nbsp;&nbsp;Coverage', getVal('sofiRibbonCoverage')));
           p.push(tLine('Roof Content', getToggle('sofiRoofContent')));
           p.push(tLine('Video Shoot', getToggle('sofiVpShoot')));
           p.push(tLine('Video Edit', getToggle('sofiVpEdit')));
         } else if (branch === 'ytt') {
           p.push(tLine('IPTV', getToggle('yttIptv')));
-          if (isYes('yttIptv')) p.push(tLine('&nbsp;&nbsp;Content Type', getVal('yttIptvContentType')));
+          if (isYes('yttIptv'))
+            p.push(tLine('&nbsp;&nbsp;Content Type', getVal('yttIptvContentType')));
           p.push(tLine('YTT Video Screen', getToggle('yttScreen')));
-          if (isYes('yttScreen')) p.push(tLine('&nbsp;&nbsp;Content Type', getVal('yttScreenContentType')));
+          if (isYes('yttScreen'))
+            p.push(tLine('&nbsp;&nbsp;Content Type', getVal('yttScreenContentType')));
           p.push(tLine('Video Shoot', getToggle('yttVpShoot')));
           p.push(tLine('Video Edit', getToggle('yttVpEdit')));
-          if (getVal('yttSuccessMetrics')) p.push(tLine('Success Metrics', getVal('yttSuccessMetrics')));
+          if (getVal('yttSuccessMetrics'))
+            p.push(tLine('Success Metrics', getVal('yttSuccessMetrics')));
           if (getVal('yttBudget')) p.push(tLine('Estimated Budget', getVal('yttBudget')));
         } else {
           p.push(tLine('IPTV', getToggle('campusIptv')));
-          if (isYes('campusIptv')) p.push(tLine('&nbsp;&nbsp;Tech Provider', getVal('campusIptvProvider')));
+          if (isYes('campusIptv'))
+            p.push(tLine('&nbsp;&nbsp;Tech Provider', getVal('campusIptvProvider')));
           p.push(tLine('AV Tech Support', getToggle('campusAvTech')));
-          if (isYes('campusAvTech')) p.push(tLine('&nbsp;&nbsp;Support Type', getVal('campusAvTechType')));
+          if (isYes('campusAvTech'))
+            p.push(tLine('&nbsp;&nbsp;Support Type', getVal('campusAvTechType')));
           p.push(tLine('Microphones', getToggle('campusMics')));
           if (isYes('campusMics')) p.push(tLine('&nbsp;&nbsp;Count', getVal('campusMicCount')));
           p.push(tLine('Speakers/PA', getToggle('campusSpeakers')));
@@ -908,7 +1215,8 @@
           if (isYes('campusMusic')) p.push(tLine('&nbsp;&nbsp;Type', getVal('campusMusicType')));
           p.push(tLine('Video Shoot', getToggle('campusVpShoot')));
           p.push(tLine('Video Edit', getToggle('campusVpEdit')));
-          if (getVal('campusSuccessMetrics')) p.push(tLine('Success Metrics', getVal('campusSuccessMetrics')));
+          if (getVal('campusSuccessMetrics'))
+            p.push(tLine('Success Metrics', getVal('campusSuccessMetrics')));
           if (getVal('campusBudget')) p.push(tLine('Estimated Budget', getVal('campusBudget')));
         }
         var filled = p.filter(Boolean);
@@ -922,25 +1230,25 @@
         var venueName = venueEl ? venueEl.dataset.vname : 'Not selected';
         var recurring = getVal('recurring') || 'One-Time';
         var html =
-          '<div class="grid grid-cols-2 gap-x-6 mb-4">'
-          + rRow('Name', getVal('firstName') + ' ' + getVal('lastName'))
-          + rRow('Email', getVal('email'))
-          + (getVal('phone')       ? rRow('Phone',      getVal('phone'))       : '')
-          + (getVal('title')       ? rRow('Job Title',  getVal('title'))       : '')
-          + (getVal('department')  ? rRow('Department', getVal('department'))  : '')
-          + (getVal('companyName') ? rRow('Company',    getVal('companyName')) : '')
-          + rRow('Event',     getVal('eventName'))
-          + rRow('Event Type', getVal('category'))
-          + rRow('Start Date', getVal('startDate'))
-          + rRow('End Date',   getVal('endDate'))
-          + rRow('Recurring', recurring)
-          + (getVal('recurringDates') ? rRow('Recurring Dates', getVal('recurringDates')) : '')
-          + rRow('Venue', venueName)
-          + '</div>'
-          + '<div class="border-t pt-4">'
-          + '<p class="text-xs font-semibold uppercase text-slate-500 tracking-wide mb-2" style="font-family:\'Monday Pro\',sans-serif;">Technical Requirements</p>'
-          + buildTechSummary()
-          + '</div>';
+          '<div class="grid grid-cols-2 gap-x-6 mb-4">' +
+          rRow('Name', getVal('firstName') + ' ' + getVal('lastName')) +
+          rRow('Email', getVal('email')) +
+          (getVal('phone') ? rRow('Phone', getVal('phone')) : '') +
+          (getVal('title') ? rRow('Job Title', getVal('title')) : '') +
+          (getVal('department') ? rRow('Department', getVal('department')) : '') +
+          (getVal('companyName') ? rRow('Company', getVal('companyName')) : '') +
+          rRow('Event', getVal('eventName')) +
+          rRow('Event Type', getVal('category')) +
+          rRow('Start Date', getVal('startDate')) +
+          rRow('End Date', getVal('endDate')) +
+          rRow('Recurring', recurring) +
+          (getVal('recurringDates') ? rRow('Recurring Dates', getVal('recurringDates')) : '') +
+          rRow('Venue', venueName) +
+          '</div>' +
+          '<div class="border-t pt-4">' +
+          '<p class="text-xs font-semibold uppercase text-slate-500 tracking-wide mb-2" style="font-family:\'Monday Pro\',sans-serif;">Technical Requirements</p>' +
+          buildTechSummary() +
+          '</div>';
         document.getElementById('review-content').innerHTML = html;
       }
 
@@ -950,12 +1258,18 @@
         var tr = { venue: venueType, branch: branch };
         if (branch === 'sofi') {
           tr.iptv = isYes('sofiIptv')
-            ? { enabled: true, contentType: getVal('sofiIptvContentType'), screens: getVal('sofiIptvScreens') }
+            ? {
+                enabled: true,
+                contentType: getVal('sofiIptvContentType'),
+                screens: getVal('sofiIptvScreens'),
+              }
             : { enabled: false };
           tr.audio = isYes('sofiAudio')
             ? {
                 enabled: true,
-                microphones: isYes('sofiMics') ? { enabled: true, count: getVal('sofiMicCount') } : { enabled: false },
+                microphones: isYes('sofiMics')
+                  ? { enabled: true, count: getVal('sofiMicCount') }
+                  : { enabled: false },
                 speakers: isYes('sofiSpeakers'),
                 dj: isYes('sofiDj'),
                 musicStyle: isYes('sofiDj') ? getVal('sofiMusicStyle') : '',
@@ -963,7 +1277,11 @@
             : { enabled: false };
           tr.avTech = { onSiteTech: isYes('sofiAvTech'), mersive: isYes('sofiMersive') };
           tr.infinityScreen = isYes('sofiInfinity')
-            ? { enabled: true, contentType: getVal('sofiInfinityContentType'), contentSource: getVal('sofiInfinitySource') }
+            ? {
+                enabled: true,
+                contentType: getVal('sofiInfinityContentType'),
+                contentSource: getVal('sofiInfinitySource'),
+              }
             : { enabled: false };
           tr.ribbonBoards = isYes('sofiRibbonBoards')
             ? { enabled: true, coverage: getVal('sofiRibbonCoverage') }
@@ -988,7 +1306,9 @@
             ? { enabled: true, supportType: getVal('campusAvTechType') }
             : { enabled: false };
           tr.audio = {
-            microphones: isYes('campusMics') ? { enabled: true, count: getVal('campusMicCount') } : { enabled: false },
+            microphones: isYes('campusMics')
+              ? { enabled: true, count: getVal('campusMicCount') }
+              : { enabled: false },
             speakers: isYes('campusSpeakers'),
           };
           tr.music = isYes('campusMusic')
@@ -998,6 +1318,7 @@
           tr.successMetrics = getVal('campusSuccessMetrics');
           tr.budget = getVal('campusBudget');
         }
+        tr.recurringFrequency = getVal('recurring');
         tr.recurringSchedule = getVal('recurringDates');
         return tr;
       }
@@ -1010,22 +1331,22 @@
 
         var venueEl = document.querySelector('input[name="locationId"]:checked');
         var payload = {
-          firstName:   getVal('firstName'),
-          lastName:    getVal('lastName'),
-          email:       getVal('email'),
-          phone:       (window._iti && window._iti.getNumber()) || getVal('phone'),
-          title:       getVal('title'),
-          department:  getVal('department'),
+          firstName: getVal('firstName'),
+          lastName: getVal('lastName'),
+          email: getVal('email'),
+          phone: (window._iti && window._iti.getNumber()) || getVal('phone'),
+          title: getVal('title'),
+          department: getVal('department'),
           companyName: getVal('companyName'),
-          eventName:   getVal('eventName'),
-          category:    getVal('category'),
-          startDate:   getVal('startDate'),
-          endDate:     getVal('endDate'),
-          locationId:  venueEl ? venueEl.value : '',
-          notes:       getVal('notes'),
-          source:      'PUBLIC_FORM',
+          eventName: getVal('eventName'),
+          category: getVal('category'),
+          startDate: getVal('startDate'),
+          endDate: getVal('endDate'),
+          locationId: venueEl ? venueEl.value : '',
+          notes: getVal('notes'),
+          source: 'PUBLIC_FORM',
           requirements: buildTechnicalRequirements(),
-          website:     getVal('website'),
+          website: getVal('website'),
         };
 
         try {
@@ -1036,7 +1357,11 @@
           });
           if (!response.ok) {
             var err = await response.json();
-            throw new Error((err.message && (Array.isArray(err.message) ? err.message.join(', ') : err.message)) || 'Submission failed');
+            throw new Error(
+              (err.message &&
+                (Array.isArray(err.message) ? err.message.join(', ') : err.message)) ||
+                'Submission failed',
+            );
           }
 
           // Show success
@@ -1061,7 +1386,6 @@
               </div>
               <a href="/" class="btn-return">Return to Home</a>
             </div>`;
-
         } catch (e) {
           var statusMsg2 = document.getElementById('statusMsg');
           statusMsg2.style.display = 'block';
@@ -1077,14 +1401,14 @@
 
       // ── Venue Highlight ──────────────────────────────────────────────────────
       function highlightVenue(selected) {
-        document.querySelectorAll('.venue-card').forEach(function(c) {
+        document.querySelectorAll('.venue-card').forEach(function (c) {
           c.classList.remove('selected');
         });
         selected.classList.add('selected');
       }
 
       // ── Init ─────────────────────────────────────────────────────────────────
-      window.onload = async function() {
+      window.onload = async function () {
         showStep(1);
 
         // intl-tel-input
@@ -1095,11 +1419,17 @@
             autoPlaceholder: 'aggressive',
             initialCountry: 'auto',
             separateDialCode: true,
-            geoIpLookup: function(callback) {
+            geoIpLookup: function (callback) {
               fetch('https://ipapi.co/json')
-                .then(function(r) { return r.json(); })
-                .then(function(d) { callback(d.country_code); })
-                .catch(function() { callback('us'); });
+                .then(function (r) {
+                  return r.json();
+                })
+                .then(function (d) {
+                  callback(d.country_code);
+                })
+                .catch(function () {
+                  callback('us');
+                });
             },
           });
         }
@@ -1125,7 +1455,7 @@
         }
 
         // Populate category dropdown from event_types table
-        (async function() {
+        (async function () {
           var catSelect = document.getElementById('category-select');
           try {
             var res = await fetch(API_BASE_URL + '/api/event-types/public', {
@@ -1134,7 +1464,7 @@
             if (res.ok) {
               var types = await res.json();
               catSelect.innerHTML = '<option value="">Select a category...</option>';
-              types.forEach(function(t) {
+              types.forEach(function (t) {
                 var opt = document.createElement('option');
                 opt.value = t.name;
                 opt.textContent = t.name;
@@ -1149,7 +1479,7 @@
         })();
 
         // Recurring dates reveal
-        document.querySelector('[name="recurring"]').addEventListener('change', function() {
+        document.querySelector('[name="recurring"]').addEventListener('change', function () {
           document.getElementById('recurring-dates-section').style.display =
             this.value !== 'One-Time' ? 'block' : 'none';
         });
@@ -1158,24 +1488,31 @@
         var container = document.getElementById('venue-radios');
 
         // "Other / Not Sure" option
-        (function() {
+        (function () {
           var card = document.createElement('label');
           card.className = 'venue-card cursor-pointer';
           var radio = document.createElement('input');
-          radio.type = 'radio'; radio.name = 'locationId'; radio.value = '';
-          radio.dataset.vtype = 'other'; radio.dataset.vname = 'Other / Not Sure';
-          radio.addEventListener('change', function() { highlightVenue(card); });
+          radio.type = 'radio';
+          radio.name = 'locationId';
+          radio.value = '';
+          radio.dataset.vtype = 'other';
+          radio.dataset.vname = 'Other / Not Sure';
+          radio.addEventListener('change', function () {
+            highlightVenue(card);
+          });
           card.appendChild(radio);
 
           // Pin SVG icon
           var iconWrap = document.createElement('div');
           iconWrap.className = 'venue-icon';
           iconWrap.style.background = 'rgba(255,255,255,0.10)';
-          iconWrap.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-6.5-6-10a6 6 0 1112 0c0 3.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>';
+          iconWrap.innerHTML =
+            '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-6.5-6-10a6 6 0 1112 0c0 3.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>';
           card.appendChild(iconWrap);
 
           var textWrap = document.createElement('div');
-          textWrap.innerHTML = '<div class="venue-name">Other / Not Sure</div><div class="venue-hint">General / Campus</div>';
+          textWrap.innerHTML =
+            '<div class="venue-name">Other / Not Sure</div><div class="venue-hint">General / Campus</div>';
           card.appendChild(textWrap);
 
           container.innerHTML = '';
@@ -1188,14 +1525,19 @@
           });
           if (res.ok) {
             var locations = await res.json();
-            locations.forEach(function(loc) {
+            locations.forEach(function (loc) {
               var vtype = classifyVenue(loc.name);
               var card = document.createElement('label');
               card.className = 'venue-card cursor-pointer';
               var radio = document.createElement('input');
-              radio.type = 'radio'; radio.name = 'locationId'; radio.value = loc.id;
-              radio.dataset.vtype = vtype; radio.dataset.vname = loc.name;
-              radio.addEventListener('change', function() { highlightVenue(card); });
+              radio.type = 'radio';
+              radio.name = 'locationId';
+              radio.value = loc.id;
+              radio.dataset.vtype = vtype;
+              radio.dataset.vname = loc.name;
+              radio.addEventListener('change', function () {
+                highlightVenue(card);
+              });
               card.appendChild(radio);
 
               var iconWrap = document.createElement('div');
@@ -1203,16 +1545,20 @@
 
               if (vtype === 'sofi') {
                 iconWrap.style.background = 'rgba(0,53,148,0.35)';
-                iconWrap.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(120,170,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>';
+                iconWrap.innerHTML =
+                  '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(120,170,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>';
               } else if (vtype === 'ytt') {
                 iconWrap.style.background = 'rgba(91,33,182,0.35)';
-                iconWrap.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/><polygon points="10 11 16 14 10 17 10 11"/></svg>';
+                iconWrap.innerHTML =
+                  '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/><polygon points="10 11 16 14 10 17 10 11"/></svg>';
               } else if (vtype === 'campus') {
                 iconWrap.style.background = 'rgba(6,95,70,0.35)';
-                iconWrap.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(52,211,153,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="13" height="13"/><path d="M3 9L12 2l9 7"/><rect x="9" y="15" width="4" height="7"/></svg>';
+                iconWrap.innerHTML =
+                  '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(52,211,153,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="13" height="13"/><path d="M3 9L12 2l9 7"/><rect x="9" y="15" width="4" height="7"/></svg>';
               } else {
                 iconWrap.style.background = 'rgba(255,255,255,0.10)';
-                iconWrap.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-6.5-6-10a6 6 0 1112 0c0 3.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>';
+                iconWrap.innerHTML =
+                  '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-6.5-6-10a6 6 0 1112 0c0 3.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>';
               }
               card.appendChild(iconWrap);
 
@@ -1233,7 +1579,6 @@
   </head>
 
   <body>
-
     <!-- ── Scene Background ────────────────────────────────────────────────── -->
     <div class="scene-bg">
       <video class="scene-video" autoplay muted loop playsinline poster="/Assets/BOPS_Bg1.png">
@@ -1245,10 +1590,8 @@
 
     <!-- ── Page Layout ─────────────────────────────────────────────────────── -->
     <div class="page-wrap">
-
       <!-- ── Concierge Container ───────────────────────────────────────────── -->
       <div class="concierge-container">
-
         <!-- Portal Header -->
         <div class="portal-header">
           <!-- Co-brand logo row -->
@@ -1292,41 +1635,73 @@
 
         <!-- Form Content -->
         <div class="form-content">
-
           <!-- ══════════════════════════════════════════════════════════════
                STEP 1 — General Info
                ══════════════════════════════════════════════════════════ -->
           <div id="step-1" class="step-pane">
             <h2 class="section-title">General Information</h2>
-            <p class="section-desc">Tell us about your event and how to reach you. Fields marked with <span style="color:#E11D48;">*</span> are required.</p>
+            <p class="section-desc">
+              Tell us about your event and how to reach you. Fields marked with
+              <span style="color: #e11d48">*</span> are required.
+            </p>
 
             <!-- Contact Info -->
             <div class="grid-2">
               <div class="field-group">
                 <label class="field-label">First Name <span class="req">*</span></label>
-                <input type="text" name="firstName" autocomplete="given-name" placeholder="Jane" class="field-input" />
+                <input
+                  type="text"
+                  name="firstName"
+                  autocomplete="given-name"
+                  placeholder="Jane"
+                  class="field-input"
+                />
               </div>
               <div class="field-group">
                 <label class="field-label">Last Name <span class="req">*</span></label>
-                <input type="text" name="lastName" autocomplete="family-name" placeholder="Smith" class="field-input" />
+                <input
+                  type="text"
+                  name="lastName"
+                  autocomplete="family-name"
+                  placeholder="Smith"
+                  class="field-input"
+                />
               </div>
             </div>
 
             <div class="grid-2">
               <div class="field-group">
                 <label class="field-label">Email <span class="req">*</span></label>
-                <input type="email" name="email" autocomplete="email" placeholder="jane@company.com" class="field-input" />
+                <input
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                  placeholder="jane@company.com"
+                  class="field-input"
+                />
               </div>
               <div class="field-group">
                 <label class="field-label">Phone <span class="opt">(Optional)</span></label>
-                <input type="tel" id="phone-input" name="phone" autocomplete="tel" placeholder="(000) 000-0000" class="field-input" />
+                <input
+                  type="tel"
+                  id="phone-input"
+                  name="phone"
+                  autocomplete="tel"
+                  placeholder="(000) 000-0000"
+                  class="field-input"
+                />
               </div>
             </div>
 
             <div class="grid-2">
               <div class="field-group">
                 <label class="field-label">Role / Title <span class="opt">(Optional)</span></label>
-                <input type="text" name="title" placeholder="Marketing Director" class="field-input" />
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Marketing Director"
+                  class="field-input"
+                />
               </div>
               <div class="field-group">
                 <label class="field-label">Department <span class="opt">(Optional)</span></label>
@@ -1336,7 +1711,13 @@
 
             <div class="field-group">
               <label class="field-label">Company <span class="opt">(Optional)</span></label>
-              <input type="text" name="companyName" autocomplete="organization" placeholder="Your Company Name" class="field-input" />
+              <input
+                type="text"
+                name="companyName"
+                autocomplete="organization"
+                placeholder="Your Company Name"
+                class="field-input"
+              />
             </div>
 
             <hr class="form-divider" />
@@ -1344,7 +1725,12 @@
 
             <div class="field-group">
               <label class="field-label">Event Name <span class="req">*</span></label>
-              <input type="text" name="eventName" placeholder="e.g. Annual Leadership Summit" class="field-input" />
+              <input
+                type="text"
+                name="eventName"
+                placeholder="e.g. Annual Leadership Summit"
+                class="field-input"
+              />
             </div>
 
             <div class="grid-2">
@@ -1367,13 +1753,18 @@
             </div>
 
             <div id="recurring-dates-section">
-              <div class="field-group" style="margin-bottom:0;">
+              <div class="field-group" style="margin-bottom: 0">
                 <label class="field-label">Recurring Schedule / Additional Dates</label>
-                <textarea name="recurringDates" rows="3" placeholder="e.g. Every Tuesday in March, or list specific dates: Mar 4, Mar 11, Mar 18..." class="field-input"></textarea>
+                <textarea
+                  name="recurringDates"
+                  rows="3"
+                  placeholder="e.g. Every Tuesday in March, or list specific dates: Mar 4, Mar 11, Mar 18..."
+                  class="field-input"
+                ></textarea>
               </div>
             </div>
 
-            <div class="grid-2" style="margin-top:1.25rem;">
+            <div class="grid-2" style="margin-top: 1.25rem">
               <div class="field-group">
                 <label class="field-label">Proposed Start Date <span class="req">*</span></label>
                 <input type="date" name="startDate" class="field-input" />
@@ -1385,14 +1776,23 @@
             </div>
 
             <hr class="form-divider" />
-            <div class="divider-label">Primary Venue Location <span style="color:#E11D48;">*</span></div>
+            <div class="divider-label">
+              Primary Venue Location <span style="color: #e11d48">*</span>
+            </div>
 
             <div id="venue-radios" class="space-y-2">
               <p class="text-slate-400 text-sm italic py-2">Loading venues...</p>
             </div>
 
             <!-- Honeypot — hidden from real users, catches bots -->
-            <input type="text" name="website" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <input
+              type="text"
+              name="website"
+              style="display: none; position: absolute; left: -9999px"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
 
             <div id="step-error" class="error-banner"></div>
 
@@ -1403,21 +1803,53 @@
             </div>
           </div>
 
-
           <!-- ══════════════════════════════════════════════════════════════
                STEP 2 — Technical Needs
                ══════════════════════════════════════════════════════════ -->
-          <div id="step-2" class="step-pane" style="display:none;">
+          <div id="step-2" class="step-pane" style="display: none">
             <h2 class="section-title">Technical Requirements</h2>
-            <p class="section-desc">Select every service you need. Sub-questions appear when you pick <strong>Yes</strong>.</p>
+            <p class="section-desc">
+              Select every service you need. Sub-questions appear when you pick
+              <strong>Yes</strong>.
+            </p>
 
             <!-- ── BRANCH A: SoFi Stadium ──────────────────────────────── -->
-            <div id="tech-sofi" style="display:none;" class="space-y-3">
+            <div id="tech-sofi" style="display: none" class="space-y-3">
               <div class="flex items-center gap-2 mb-1">
-                <div style="width:2rem;height:2rem;border-radius:8px;background:rgba(0,53,148,0.35);display:flex;align-items:center;justify-content:center;">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="rgba(120,170,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+                <div
+                  style="
+                    width: 2rem;
+                    height: 2rem;
+                    border-radius: 8px;
+                    background: rgba(0, 53, 148, 0.35);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="rgba(120,170,255,0.9)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    <path d="M9 22V12h6v10" />
+                  </svg>
                 </div>
-                <span style="font-family:'Monday Pro',sans-serif;font-weight:700;color:rgba(255,255,255,0.90);font-size:1rem;">SoFi Stadium</span>
+                <span
+                  style="
+                    font-family: 'Monday Pro', sans-serif;
+                    font-weight: 700;
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 1rem;
+                  "
+                  >SoFi Stadium</span
+                >
               </div>
 
               <!-- IPTV -->
@@ -1431,12 +1863,26 @@
                     </div>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-sofiIptv" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('sofiIptv','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('sofiIptv','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('sofiIptv','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('sofiIptv','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div id="sub-sofiIptv" style="display:none;" class="sub-question grid-2 pt-1">
-                    <div class="field-group" style="margin-bottom:0;">
+                  <div id="sub-sofiIptv" style="display: none" class="sub-question grid-2 pt-1">
+                    <div class="field-group" style="margin-bottom: 0">
                       <label class="field-label">Content Type</label>
                       <select name="sofiIptvContentType" class="field-input">
                         <option value="Game Day Content">Game Day Content</option>
@@ -1445,7 +1891,7 @@
                         <option value="Mixed">Mixed</option>
                       </select>
                     </div>
-                    <div class="field-group" style="margin-bottom:0;">
+                    <div class="field-group" style="margin-bottom: 0">
                       <label class="field-label">Screen Selection</label>
                       <select name="sofiIptvScreens" class="field-input">
                         <option value="All Screens">All Screens</option>
@@ -1467,45 +1913,115 @@
                     <p class="toggle-question">Do you need Audio Support?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-sofiAudio" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('sofiAudio','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('sofiAudio','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('sofiAudio','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('sofiAudio','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div id="sub-sofiAudio" style="display:none;" class="sub-question space-y-3">
+                  <div id="sub-sofiAudio" style="display: none" class="sub-question space-y-3">
                     <div class="toggle-row">
-                      <p class="toggle-question" style="font-size:0.8125rem;">Microphones Needed?</p>
+                      <p class="toggle-question" style="font-size: 0.8125rem">
+                        Microphones Needed?
+                      </p>
                       <div class="toggle-group">
                         <input type="hidden" id="toggle-input-sofiMics" value="" />
-                        <button type="button" data-val="yes" onclick="setToggle('sofiMics','yes',this)" class="toggle-btn">Yes</button>
-                        <button type="button" data-val="no"  onclick="setToggle('sofiMics','no',this)"  class="toggle-btn">No</button>
+                        <button
+                          type="button"
+                          data-val="yes"
+                          onclick="setToggle('sofiMics','yes',this)"
+                          class="toggle-btn"
+                        >
+                          Yes
+                        </button>
+                        <button
+                          type="button"
+                          data-val="no"
+                          onclick="setToggle('sofiMics','no',this)"
+                          class="toggle-btn"
+                        >
+                          No
+                        </button>
                       </div>
                     </div>
-                    <div id="sub-sofiMics" style="display:none;" class="sub-question">
-                      <div class="field-group" style="margin-bottom:0;">
+                    <div id="sub-sofiMics" style="display: none" class="sub-question">
+                      <div class="field-group" style="margin-bottom: 0">
                         <label class="field-label">How Many Microphones?</label>
-                        <select name="sofiMicCount" class="field-input"><option value="1">1</option><option value="2-5">2 – 5</option><option value="6-10">6 – 10</option><option value="10+">10+</option></select>
+                        <select name="sofiMicCount" class="field-input">
+                          <option value="1">1</option>
+                          <option value="2-5">2 – 5</option>
+                          <option value="6-10">6 – 10</option>
+                          <option value="10+">10+</option>
+                        </select>
                       </div>
                     </div>
                     <div class="toggle-row">
-                      <p class="toggle-question" style="font-size:0.8125rem;">Speakers / PA System?</p>
+                      <p class="toggle-question" style="font-size: 0.8125rem">
+                        Speakers / PA System?
+                      </p>
                       <div class="toggle-group">
                         <input type="hidden" id="toggle-input-sofiSpeakers" value="" />
-                        <button type="button" data-val="yes" onclick="setToggle('sofiSpeakers','yes',this)" class="toggle-btn">Yes</button>
-                        <button type="button" data-val="no"  onclick="setToggle('sofiSpeakers','no',this)"  class="toggle-btn">No</button>
+                        <button
+                          type="button"
+                          data-val="yes"
+                          onclick="setToggle('sofiSpeakers','yes',this)"
+                          class="toggle-btn"
+                        >
+                          Yes
+                        </button>
+                        <button
+                          type="button"
+                          data-val="no"
+                          onclick="setToggle('sofiSpeakers','no',this)"
+                          class="toggle-btn"
+                        >
+                          No
+                        </button>
                       </div>
                     </div>
                     <div class="toggle-row">
-                      <p class="toggle-question" style="font-size:0.8125rem;">DJ Required?</p>
+                      <p class="toggle-question" style="font-size: 0.8125rem">DJ Required?</p>
                       <div class="toggle-group">
                         <input type="hidden" id="toggle-input-sofiDj" value="" />
-                        <button type="button" data-val="yes" onclick="setToggle('sofiDj','yes',this)" class="toggle-btn">Yes</button>
-                        <button type="button" data-val="no"  onclick="setToggle('sofiDj','no',this)"  class="toggle-btn">No</button>
+                        <button
+                          type="button"
+                          data-val="yes"
+                          onclick="setToggle('sofiDj','yes',this)"
+                          class="toggle-btn"
+                        >
+                          Yes
+                        </button>
+                        <button
+                          type="button"
+                          data-val="no"
+                          onclick="setToggle('sofiDj','no',this)"
+                          class="toggle-btn"
+                        >
+                          No
+                        </button>
                       </div>
                     </div>
-                    <div id="sub-sofiDj" style="display:none;" class="sub-question">
-                      <div class="field-group" style="margin-bottom:0;">
+                    <div id="sub-sofiDj" style="display: none" class="sub-question">
+                      <div class="field-group" style="margin-bottom: 0">
                         <label class="field-label">Music Style</label>
-                        <select name="sofiMusicStyle" class="field-input"><option value="Sports/Arena">Sports / Arena</option><option value="Background/Ambient">Background / Ambient</option><option value="Live Band">Live Band</option><option value="Mixed">Mixed</option></select>
+                        <select name="sofiMusicStyle" class="field-input">
+                          <option value="Sports/Arena">Sports / Arena</option>
+                          <option value="Background/Ambient">Background / Ambient</option>
+                          <option value="Live Band">Live Band</option>
+                          <option value="Mixed">Mixed</option>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -1520,16 +2036,44 @@
                     <p class="toggle-question">On-site AV Technician Required?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-sofiAvTech" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('sofiAvTech','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('sofiAvTech','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('sofiAvTech','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('sofiAvTech','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
                   <div class="toggle-row">
                     <p class="toggle-question">Mersive / Solstice (Wireless Sharing)?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-sofiMersive" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('sofiMersive','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('sofiMersive','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('sofiMersive','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('sofiMersive','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1546,13 +2090,42 @@
                     </div>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-sofiInfinity" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('sofiInfinity','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('sofiInfinity','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('sofiInfinity','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('sofiInfinity','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div id="sub-sofiInfinity" style="display:none;" class="sub-question grid-2 pt-1">
-                    <div class="field-group" style="margin-bottom:0;"><label class="field-label">Content Type</label><select name="sofiInfinityContentType" class="field-input"><option value="Full Show">Full Show</option><option value="Partial Show">Partial Show</option><option value="Custom Content Loop">Custom Content Loop</option><option value="Logo/Branding Only">Logo / Branding Only</option></select></div>
-                    <div class="field-group" style="margin-bottom:0;"><label class="field-label">Content Source</label><select name="sofiInfinitySource" class="field-input"><option value="Client-Provided">Client-Provided</option><option value="Produced In-House">Produced In-House</option><option value="Both">Both</option></select></div>
+                  <div id="sub-sofiInfinity" style="display: none" class="sub-question grid-2 pt-1">
+                    <div class="field-group" style="margin-bottom: 0">
+                      <label class="field-label">Content Type</label
+                      ><select name="sofiInfinityContentType" class="field-input">
+                        <option value="Full Show">Full Show</option>
+                        <option value="Partial Show">Partial Show</option>
+                        <option value="Custom Content Loop">Custom Content Loop</option>
+                        <option value="Logo/Branding Only">Logo / Branding Only</option>
+                      </select>
+                    </div>
+                    <div class="field-group" style="margin-bottom: 0">
+                      <label class="field-label">Content Source</label
+                      ><select name="sofiInfinitySource" class="field-input">
+                        <option value="Client-Provided">Client-Provided</option>
+                        <option value="Produced In-House">Produced In-House</option>
+                        <option value="Both">Both</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1568,12 +2141,33 @@
                     </div>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-sofiRibbonBoards" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('sofiRibbonBoards','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('sofiRibbonBoards','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('sofiRibbonBoards','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('sofiRibbonBoards','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div id="sub-sofiRibbonBoards" style="display:none;" class="sub-question pt-1">
-                    <div class="field-group" style="margin-bottom:0;"><label class="field-label">Coverage</label><select name="sofiRibbonCoverage" class="field-input"><option value="Full Wrap">Full Wrap</option><option value="Partial">Partial</option><option value="Main Bowl Only">Main Bowl Only</option></select></div>
+                  <div id="sub-sofiRibbonBoards" style="display: none" class="sub-question pt-1">
+                    <div class="field-group" style="margin-bottom: 0">
+                      <label class="field-label">Coverage</label
+                      ><select name="sofiRibbonCoverage" class="field-input">
+                        <option value="Full Wrap">Full Wrap</option>
+                        <option value="Partial">Partial</option>
+                        <option value="Main Bowl Only">Main Bowl Only</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1586,8 +2180,22 @@
                     <p class="toggle-question">Do you need Roof Content?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-sofiRoofContent" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('sofiRoofContent','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('sofiRoofContent','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('sofiRoofContent','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('sofiRoofContent','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1601,45 +2209,129 @@
                     <p class="toggle-question">Video Shoot?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-sofiVpShoot" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('sofiVpShoot','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('sofiVpShoot','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('sofiVpShoot','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('sofiVpShoot','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
                   <div class="toggle-row">
                     <p class="toggle-question">Video Edit / Post-Production?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-sofiVpEdit" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('sofiVpEdit','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('sofiVpEdit','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('sofiVpEdit','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('sofiVpEdit','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div><!-- /tech-sofi -->
-
+            </div>
+            <!-- /tech-sofi -->
 
             <!-- ── BRANCH B: YouTube Theater ────────────────────────────── -->
-            <div id="tech-ytt" style="display:none;" class="space-y-3">
+            <div id="tech-ytt" style="display: none" class="space-y-3">
               <div class="flex items-center gap-2 mb-1">
-                <div style="width:2rem;height:2rem;border-radius:8px;background:rgba(91,33,182,0.35);display:flex;align-items:center;justify-content:center;">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="rgba(167,139,250,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/><polygon points="10 11 16 14 10 17 10 11"/></svg>
+                <div
+                  style="
+                    width: 2rem;
+                    height: 2rem;
+                    border-radius: 8px;
+                    background: rgba(91, 33, 182, 0.35);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="rgba(167,139,250,0.9)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="2" y="7" width="20" height="14" rx="2" />
+                    <path d="M16 3l-4 4-4-4" />
+                    <polygon points="10 11 16 14 10 17 10 11" />
+                  </svg>
                 </div>
-                <span style="font-family:'Monday Pro',sans-serif;font-weight:700;color:rgba(255,255,255,0.90);font-size:1rem;">YouTube Theater</span>
+                <span
+                  style="
+                    font-family: 'Monday Pro', sans-serif;
+                    font-weight: 700;
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 1rem;
+                  "
+                  >YouTube Theater</span
+                >
               </div>
 
               <div class="tech-card ytt-card">
                 <div class="tech-card-header">IPTV (In-Venue Broadcast)</div>
                 <div class="tech-card-body">
                   <div class="toggle-row">
-                    <div><p class="toggle-question">Do you require IPTV?</p><p class="toggle-warning">10 business days advance notice required</p></div>
+                    <div>
+                      <p class="toggle-question">Do you require IPTV?</p>
+                      <p class="toggle-warning">10 business days advance notice required</p>
+                    </div>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-yttIptv" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('yttIptv','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('yttIptv','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('yttIptv','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('yttIptv','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div id="sub-yttIptv" style="display:none;" class="sub-question pt-1">
-                    <div class="field-group" style="margin-bottom:0;"><label class="field-label">Content Type</label><select name="yttIptvContentType" class="field-input"><option value="Game Day Content">Game Day Content</option><option value="Sponsor Content">Sponsor Content</option><option value="Custom Programming">Custom Programming</option><option value="Mixed">Mixed</option></select></div>
+                  <div id="sub-yttIptv" style="display: none" class="sub-question pt-1">
+                    <div class="field-group" style="margin-bottom: 0">
+                      <label class="field-label">Content Type</label
+                      ><select name="yttIptvContentType" class="field-input">
+                        <option value="Game Day Content">Game Day Content</option>
+                        <option value="Sponsor Content">Sponsor Content</option>
+                        <option value="Custom Programming">Custom Programming</option>
+                        <option value="Mixed">Mixed</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1648,15 +2340,40 @@
                 <div class="tech-card-header">YTT Video Screen</div>
                 <div class="tech-card-body">
                   <div class="toggle-row">
-                    <div><p class="toggle-question">Do you need the YTT Video Screen?</p><p class="toggle-warning">5 business days advance notice required</p></div>
+                    <div>
+                      <p class="toggle-question">Do you need the YTT Video Screen?</p>
+                      <p class="toggle-warning">5 business days advance notice required</p>
+                    </div>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-yttScreen" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('yttScreen','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('yttScreen','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('yttScreen','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('yttScreen','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div id="sub-yttScreen" style="display:none;" class="sub-question pt-1">
-                    <div class="field-group" style="margin-bottom:0;"><label class="field-label">Content Type</label><select name="yttScreenContentType" class="field-input"><option value="Original Content">Original Content</option><option value="Partner Provided">Partner Provided</option><option value="Live Feed">Live Feed</option><option value="Custom">Custom</option></select></div>
+                  <div id="sub-yttScreen" style="display: none" class="sub-question pt-1">
+                    <div class="field-group" style="margin-bottom: 0">
+                      <label class="field-label">Content Type</label
+                      ><select name="yttScreenContentType" class="field-input">
+                        <option value="Original Content">Original Content</option>
+                        <option value="Partner Provided">Partner Provided</option>
+                        <option value="Live Feed">Live Feed</option>
+                        <option value="Custom">Custom</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1668,16 +2385,44 @@
                     <p class="toggle-question">Video Shoot?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-yttVpShoot" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('yttVpShoot','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('yttVpShoot','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('yttVpShoot','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('yttVpShoot','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
                   <div class="toggle-row">
                     <p class="toggle-question">Video Edit / Post-Production?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-yttVpEdit" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('yttVpEdit','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('yttVpEdit','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('yttVpEdit','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('yttVpEdit','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1686,41 +2431,112 @@
               <div class="tech-card ytt-card">
                 <div class="tech-card-header">Event Goals</div>
                 <div class="tech-card-body space-y-3">
-                  <div class="field-group" style="margin-bottom:0.75rem;">
-                    <label class="field-label">Success Metrics <span class="opt">(Optional)</span></label>
-                    <textarea name="yttSuccessMetrics" rows="3" placeholder="What does success look like for this event?" class="field-input"></textarea>
+                  <div class="field-group" style="margin-bottom: 0.75rem">
+                    <label class="field-label"
+                      >Success Metrics <span class="opt">(Optional)</span></label
+                    >
+                    <textarea
+                      name="yttSuccessMetrics"
+                      rows="3"
+                      placeholder="What does success look like for this event?"
+                      class="field-input"
+                    ></textarea>
                   </div>
-                  <div class="field-group" style="margin-bottom:0;">
-                    <label class="field-label">Estimated Budget <span class="opt">(Optional)</span></label>
-                    <select name="yttBudget" class="field-input"><option value="">Select a range...</option><option value="Under $5K">Under $5K</option><option value="$5K–$10K">$5K – $10K</option><option value="$10K–$25K">$10K – $25K</option><option value="$25K+">$25K+</option><option value="To Be Discussed">To Be Discussed</option></select>
+                  <div class="field-group" style="margin-bottom: 0">
+                    <label class="field-label"
+                      >Estimated Budget <span class="opt">(Optional)</span></label
+                    >
+                    <select name="yttBudget" class="field-input">
+                      <option value="">Select a range...</option>
+                      <option value="Under $5K">Under $5K</option>
+                      <option value="$5K–$10K">$5K – $10K</option>
+                      <option value="$10K–$25K">$10K – $25K</option>
+                      <option value="$25K+">$25K+</option>
+                      <option value="To Be Discussed">To Be Discussed</option>
+                    </select>
                   </div>
                 </div>
               </div>
-            </div><!-- /tech-ytt -->
-
+            </div>
+            <!-- /tech-ytt -->
 
             <!-- ── BRANCH C: HWP Campus / Other ────────────────────────── -->
-            <div id="tech-campus" style="display:none;" class="space-y-3">
+            <div id="tech-campus" style="display: none" class="space-y-3">
               <div class="flex items-center gap-2 mb-1">
-                <div style="width:2rem;height:2rem;border-radius:8px;background:rgba(6,95,70,0.35);display:flex;align-items:center;justify-content:center;">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="rgba(52,211,153,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="13" height="13"/><path d="M3 9L12 2l9 7"/><rect x="9" y="15" width="4" height="7"/></svg>
+                <div
+                  style="
+                    width: 2rem;
+                    height: 2rem;
+                    border-radius: 8px;
+                    background: rgba(6, 95, 70, 0.35);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="rgba(52,211,153,0.9)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="9" width="13" height="13" />
+                    <path d="M3 9L12 2l9 7" />
+                    <rect x="9" y="15" width="4" height="7" />
+                  </svg>
                 </div>
-                <span style="font-family:'Monday Pro',sans-serif;font-weight:700;color:rgba(255,255,255,0.90);font-size:1rem;">HWP Campus / General</span>
+                <span
+                  style="
+                    font-family: 'Monday Pro', sans-serif;
+                    font-weight: 700;
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 1rem;
+                  "
+                  >HWP Campus / General</span
+                >
               </div>
 
               <div class="tech-card campus-card">
                 <div class="tech-card-header">IPTV (In-Venue Broadcast)</div>
                 <div class="tech-card-body">
                   <div class="toggle-row">
-                    <div><p class="toggle-question">Do you require IPTV?</p><p class="toggle-warning">10 business days advance notice required</p></div>
+                    <div>
+                      <p class="toggle-question">Do you require IPTV?</p>
+                      <p class="toggle-warning">10 business days advance notice required</p>
+                    </div>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-campusIptv" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('campusIptv','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('campusIptv','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('campusIptv','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('campusIptv','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div id="sub-campusIptv" style="display:none;" class="sub-question pt-1">
-                    <div class="field-group" style="margin-bottom:0;"><label class="field-label">Tech Provider</label><select name="campusIptvProvider" class="field-input"><option value="Venue Tech Team">Venue Tech Team</option><option value="Client-Provided">Client-Provided</option><option value="Third Party">Third Party</option></select></div>
+                  <div id="sub-campusIptv" style="display: none" class="sub-question pt-1">
+                    <div class="field-group" style="margin-bottom: 0">
+                      <label class="field-label">Tech Provider</label
+                      ><select name="campusIptvProvider" class="field-input">
+                        <option value="Venue Tech Team">Venue Tech Team</option>
+                        <option value="Client-Provided">Client-Provided</option>
+                        <option value="Third Party">Third Party</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1732,12 +2548,33 @@
                     <p class="toggle-question">AV Tech Support Needed?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-campusAvTech" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('campusAvTech','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('campusAvTech','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('campusAvTech','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('campusAvTech','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div id="sub-campusAvTech" style="display:none;" class="sub-question pt-1">
-                    <div class="field-group" style="margin-bottom:0;"><label class="field-label">Type of Support</label><select name="campusAvTechType" class="field-input"><option value="Basic Setup">Basic Setup</option><option value="Full Production">Full Production</option><option value="Technical Supervision">Technical Supervision</option></select></div>
+                  <div id="sub-campusAvTech" style="display: none" class="sub-question pt-1">
+                    <div class="field-group" style="margin-bottom: 0">
+                      <label class="field-label">Type of Support</label
+                      ><select name="campusAvTechType" class="field-input">
+                        <option value="Basic Setup">Basic Setup</option>
+                        <option value="Full Production">Full Production</option>
+                        <option value="Technical Supervision">Technical Supervision</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1749,19 +2586,55 @@
                     <p class="toggle-question">Microphones Needed?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-campusMics" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('campusMics','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('campusMics','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('campusMics','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('campusMics','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div id="sub-campusMics" style="display:none;" class="sub-question">
-                    <div class="field-group" style="margin-bottom:0;"><label class="field-label">How Many Microphones?</label><select name="campusMicCount" class="field-input"><option value="1">1</option><option value="2-5">2 – 5</option><option value="6-10">6 – 10</option><option value="10+">10+</option></select></div>
+                  <div id="sub-campusMics" style="display: none" class="sub-question">
+                    <div class="field-group" style="margin-bottom: 0">
+                      <label class="field-label">How Many Microphones?</label
+                      ><select name="campusMicCount" class="field-input">
+                        <option value="1">1</option>
+                        <option value="2-5">2 – 5</option>
+                        <option value="6-10">6 – 10</option>
+                        <option value="10+">10+</option>
+                      </select>
+                    </div>
                   </div>
                   <div class="toggle-row">
                     <p class="toggle-question">Speakers / PA System?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-campusSpeakers" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('campusSpeakers','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('campusSpeakers','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('campusSpeakers','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('campusSpeakers','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1774,12 +2647,34 @@
                     <p class="toggle-question">Live Music or DJ?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-campusMusic" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('campusMusic','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('campusMusic','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('campusMusic','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('campusMusic','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div id="sub-campusMusic" style="display:none;" class="sub-question pt-1">
-                    <div class="field-group" style="margin-bottom:0;"><label class="field-label">Music Type</label><select name="campusMusicType" class="field-input"><option value="Live Band">Live Band</option><option value="DJ">DJ</option><option value="Background/Ambient">Background / Ambient</option><option value="Both">Both (Live + DJ)</option></select></div>
+                  <div id="sub-campusMusic" style="display: none" class="sub-question pt-1">
+                    <div class="field-group" style="margin-bottom: 0">
+                      <label class="field-label">Music Type</label
+                      ><select name="campusMusicType" class="field-input">
+                        <option value="Live Band">Live Band</option>
+                        <option value="DJ">DJ</option>
+                        <option value="Background/Ambient">Background / Ambient</option>
+                        <option value="Both">Both (Live + DJ)</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1791,16 +2686,44 @@
                     <p class="toggle-question">Video Shoot?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-campusVpShoot" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('campusVpShoot','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('campusVpShoot','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('campusVpShoot','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('campusVpShoot','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
                   <div class="toggle-row">
                     <p class="toggle-question">Video Edit / Post-Production?</p>
                     <div class="toggle-group">
                       <input type="hidden" id="toggle-input-campusVpEdit" value="" />
-                      <button type="button" data-val="yes" onclick="setToggle('campusVpEdit','yes',this)" class="toggle-btn">Yes</button>
-                      <button type="button" data-val="no"  onclick="setToggle('campusVpEdit','no',this)"  class="toggle-btn">No</button>
+                      <button
+                        type="button"
+                        data-val="yes"
+                        onclick="setToggle('campusVpEdit','yes',this)"
+                        class="toggle-btn"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        data-val="no"
+                        onclick="setToggle('campusVpEdit','no',this)"
+                        class="toggle-btn"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1809,17 +2732,34 @@
               <div class="tech-card campus-card">
                 <div class="tech-card-header">Event Goals</div>
                 <div class="tech-card-body space-y-3">
-                  <div class="field-group" style="margin-bottom:0.75rem;">
-                    <label class="field-label">Success Metrics <span class="opt">(Optional)</span></label>
-                    <textarea name="campusSuccessMetrics" rows="3" placeholder="What does success look like for this event?" class="field-input"></textarea>
+                  <div class="field-group" style="margin-bottom: 0.75rem">
+                    <label class="field-label"
+                      >Success Metrics <span class="opt">(Optional)</span></label
+                    >
+                    <textarea
+                      name="campusSuccessMetrics"
+                      rows="3"
+                      placeholder="What does success look like for this event?"
+                      class="field-input"
+                    ></textarea>
                   </div>
-                  <div class="field-group" style="margin-bottom:0;">
-                    <label class="field-label">Estimated Budget <span class="opt">(Optional)</span></label>
-                    <select name="campusBudget" class="field-input"><option value="">Select a range...</option><option value="Under $5K">Under $5K</option><option value="$5K–$10K">$5K – $10K</option><option value="$10K–$25K">$10K – $25K</option><option value="$25K+">$25K+</option><option value="To Be Discussed">To Be Discussed</option></select>
+                  <div class="field-group" style="margin-bottom: 0">
+                    <label class="field-label"
+                      >Estimated Budget <span class="opt">(Optional)</span></label
+                    >
+                    <select name="campusBudget" class="field-input">
+                      <option value="">Select a range...</option>
+                      <option value="Under $5K">Under $5K</option>
+                      <option value="$5K–$10K">$5K – $10K</option>
+                      <option value="$10K–$25K">$10K – $25K</option>
+                      <option value="$25K+">$25K+</option>
+                      <option value="To Be Discussed">To Be Discussed</option>
+                    </select>
                   </div>
                 </div>
               </div>
-            </div><!-- /tech-campus -->
+            </div>
+            <!-- /tech-campus -->
 
             <div class="flex justify-between mt-8">
               <button type="button" onclick="prevStep()" class="btn-secondary">&larr; Back</button>
@@ -1827,19 +2767,27 @@
             </div>
           </div>
 
-
           <!-- ══════════════════════════════════════════════════════════════
                STEP 3 — Review & Submit
                ══════════════════════════════════════════════════════════ -->
-          <div id="step-3" class="step-pane" style="display:none;">
+          <div id="step-3" class="step-pane" style="display: none">
             <h2 class="section-title">Review &amp; Submit</h2>
-            <p class="section-desc">Please review your details below before submitting your inquiry.</p>
+            <p class="section-desc">
+              Please review your details below before submitting your inquiry.
+            </p>
 
             <div id="review-content" class="review-card text-sm"></div>
 
             <div class="field-group">
-              <label class="field-label">Additional Notes <span class="opt">(Optional)</span></label>
-              <textarea name="notes" rows="3" placeholder="Anything else we should know about your event?" class="field-input"></textarea>
+              <label class="field-label"
+                >Additional Notes <span class="opt">(Optional)</span></label
+              >
+              <textarea
+                name="notes"
+                rows="3"
+                placeholder="Anything else we should know about your event?"
+                class="field-input"
+              ></textarea>
             </div>
 
             <div class="flex justify-between items-center mt-6">
@@ -1849,14 +2797,14 @@
               </button>
             </div>
           </div>
-
-        </div><!-- /form-content -->
-      </div><!-- /concierge-container -->
+        </div>
+        <!-- /form-content -->
+      </div>
+      <!-- /concierge-container -->
 
       <!-- Success / Error Message (replaces container on success) -->
-      <div id="statusMsg" style="display:none;"></div>
-
-    </div><!-- /page-wrap -->
-
+      <div id="statusMsg" style="display: none"></div>
+    </div>
+    <!-- /page-wrap -->
   </body>
 </html>
